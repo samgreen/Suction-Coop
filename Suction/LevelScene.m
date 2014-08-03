@@ -11,6 +11,7 @@
 #import "WallNode.h"
 #import "GoalNode.h"
 #import "PainNode.h"
+#import "SKNode+ArchiveHelpers.h"
 
 @interface LevelScene () <SKPhysicsContactDelegate>
 
@@ -140,7 +141,8 @@
     
     // 1. Load walls
     [scene enumerateChildNodesWithName:@"Wall" usingBlock:^(SKNode *node, BOOL *stop) {
-        WallNode *wall = [WallNode nodeWithSize:node.frame.size];
+        SKSpriteNode *spriteNode = (SKSpriteNode *)node;
+        WallNode *wall = [WallNode nodeWithSize:spriteNode.size];
         wall.zRotation = node.zRotation;
         wall.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
                                     node.frame.origin.y + node.frame.size.height / 2);
@@ -149,7 +151,8 @@
     
     // 2. Load pain nodes
     [scene enumerateChildNodesWithName:@"Pain" usingBlock:^(SKNode *node, BOOL *stop) {
-        PainNode *pain = [PainNode nodeWithSize:node.frame.size];
+        SKSpriteNode *spriteNode = (SKSpriteNode *)node;
+        PainNode *pain = [PainNode nodeWithSize:spriteNode.size];
         pain.zRotation = node.zRotation;
         pain.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
                                     node.frame.origin.y + node.frame.size.height / 2);
@@ -171,8 +174,8 @@
     [self addChild:self.suctionNode];
     
     // 5. Create joint
-    [self initLRopeJoint];
-//    [self initFixedJoint];
+//    [self initLRopeJoint];
+    [self initFixedJoint];
     
     // 6. Reload UI
     [self initUI];
@@ -278,10 +281,6 @@
     labelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     labelNode.text = text;
     return labelNode;
-}
-
-+ (id)loadArchive:(NSString *)name {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSBundle mainBundle] pathForResource:name ofType:@"sks"]];
 }
 
 @end

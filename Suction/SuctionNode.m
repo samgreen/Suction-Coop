@@ -52,6 +52,7 @@
     node.zPosition = 5;
     
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16.f];
+    node.physicsBody.allowsRotation = NO;
     node.physicsBody.usesPreciseCollisionDetection = YES;
     node.physicsBody.categoryBitMask = SuctionColliderTypeWall;
     node.physicsBody.collisionBitMask = SuctionColliderTypeWall;
@@ -75,10 +76,14 @@
 #pragma mark - Physics
 - (void)toggleRedSuction {
     self.redNode.physicsBody.dynamic = !self.redNode.physicsBody.dynamic;
+    self.redNode.alpha = self.redNode.physicsBody.dynamic ? 1.f : 0.3f;
+    self.redNode.strokeColor = self.redNode.physicsBody.dynamic ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
 - (void)toggleBlueSuction {
     self.blueNode.physicsBody.dynamic = !self.blueNode.physicsBody.dynamic;
+    self.blueNode.alpha = self.blueNode.physicsBody.dynamic ? 1.f : 0.3f;
+    self.blueNode.strokeColor = self.blueNode.physicsBody.dynamic ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
 - (void)accelerateRedNode {
@@ -92,7 +97,7 @@
 - (void)accelerateNode:(SKNode *)node {
     if (!node.physicsBody.dynamic) return;
     
-    [node.physicsBody applyImpulse:CGVectorMake(100, 0)];
+    [node.physicsBody applyImpulse:CGVectorMake(25, 0)];
 }
 
 @end
