@@ -16,9 +16,12 @@
 
 @property (nonatomic, strong) SKLabelNode *redHealthLabelNode;
 @property (nonatomic, strong) SKLabelNode *blueHealthLabelNode;
+@property (nonatomic, strong) SKLabelNode *gameOverLabelNode;
 
 @property (nonatomic, strong) SuctionNode *suctionNode;
 @property (nonatomic, strong) GoalNode *goalNode;
+
+@property (nonatomic) BOOL reachedGoal;
 
 @end
 
@@ -63,6 +66,12 @@
     self.redHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor redColor]];
     self.redHealthLabelNode.position = CGPointMake(80, 10);
     [self addChild:self.redHealthLabelNode];
+    
+    self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
+    self.gameOverLabelNode.fontSize = 48.f;
+    self.gameOverLabelNode.position = CGPointMake(CGRectGetWidth(self.frame) / 2,
+                                                  CGRectGetHeight(self.frame) / 2);
+    [self addChild:self.gameOverLabelNode];
 }
 
 - (void)initFixedJoint {
@@ -114,6 +123,7 @@
     
     // Start with a clean slate
     [self removeAllChildren];
+    self.reachedGoal = NO;
     
     // 1. Load walls
     [scene enumerateChildNodesWithName:@"Wall" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -193,6 +203,12 @@
 - (void)updateUI {
     self.redHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.redHealth];
     self.blueHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.blueHealth];
+    
+    if (self.suctionNode.redHealth <= 0 || self.suctionNode.blueHealth <= 0) {
+        self.gameOverLabelNode.text = @"Game Over!";
+    } else if (self.reachedGoal) {
+        self.gameOverLabelNode.text = @"You Win!";
+    }
 }
 
 #pragma mark - Physics Delegate
@@ -211,7 +227,8 @@
         }
         [self updateUI];
     } else if ([nodeA.name isEqualToString:@"Goal"]) {
-        NSLog(@"Goal!!!");
+        self.reachedGoal = YES;
+        [self updateUI];
     } else {
         NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);
     }

@@ -13,8 +13,8 @@
 @property (nonatomic, strong) SKShapeNode *blueNode;
 @property (nonatomic, strong) SKShapeNode *redNode;
 
-@property (nonatomic) NSUInteger redHealth;
-@property (nonatomic) NSUInteger blueHealth;
+@property (nonatomic) NSInteger redHealth;
+@property (nonatomic) NSInteger blueHealth;
 
 @end
 

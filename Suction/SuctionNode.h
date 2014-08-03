@@ -13,8 +13,8 @@
 @property (nonatomic, readonly) SKShapeNode *blueNode;
 @property (nonatomic, readonly) SKShapeNode *redNode;
 
-@property (nonatomic, readonly) NSUInteger blueHealth;
-@property (nonatomic, readonly) NSUInteger redHealth;
+@property (nonatomic, readonly) NSInteger blueHealth;
+@property (nonatomic, readonly) NSInteger redHealth;
 
 - (void)createJoint;
 
