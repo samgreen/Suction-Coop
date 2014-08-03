@@ -25,10 +25,14 @@
     self = [super init];
     if (self) {
         self.blueNode = [SuctionNode newSuctionNode:[SKColor blueColor] atPosition:CGPointMake(64.f, 0)];
+        self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
         [self addChild:self.blueNode];
+        [self toggleBlueSuction];
         
         self.redNode = [SuctionNode newSuctionNode:[SKColor redColor] atPosition:CGPointMake(-64.f, 0)];
+        self.redNode.physicsBody.categoryBitMask = SuctionColliderTypeRedSuction;
         [self addChild:self.redNode];
+        [self toggleRedSuction];
     }
     return self;
 }
@@ -38,8 +42,11 @@
     node.fillColor = color;
     node.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-16.f, -16.f, 32.f, 32.f)].CGPath;
     node.position = position;
+    node.zPosition = 5;
     
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16.f];
+    node.physicsBody.usesPreciseCollisionDetection = YES;
+    node.physicsBody.collisionBitMask = (SuctionColliderTypeWall | SuctionColliderTypeGoal | SuctionColliderTypePain);
     
     return node;
 }

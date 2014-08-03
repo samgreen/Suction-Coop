@@ -7,12 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "MyScene.h"
+#import "LevelScene.h"
 
 @implementation ViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     // Configure the view.
@@ -22,7 +21,8 @@
     skView.showsPhysics = YES;
     
     // Create and configure the scene.
-    SKScene *scene = [MyScene sceneWithSize:CGSizeMake(1024, 768)];
+    LevelScene *scene = [LevelScene sceneWithSize:CGSizeMake(1024, 768)];
+    scene.level = 1;
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -37,19 +37,8 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
 @end

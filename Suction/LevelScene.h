@@ -8,6 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface MyScene : SKScene
+@interface LevelScene : SKScene
+
+@property (nonatomic) NSUInteger level;
 
 @end
