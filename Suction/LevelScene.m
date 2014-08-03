@@ -141,6 +141,7 @@
     // 1. Load walls
     [scene enumerateChildNodesWithName:@"Wall" usingBlock:^(SKNode *node, BOOL *stop) {
         WallNode *wall = [WallNode nodeWithSize:node.frame.size];
+        wall.zRotation = node.zRotation;
         wall.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
                                     node.frame.origin.y + node.frame.size.height / 2);
         [self addChild:wall];
@@ -149,6 +150,7 @@
     // 2. Load pain nodes
     [scene enumerateChildNodesWithName:@"Pain" usingBlock:^(SKNode *node, BOOL *stop) {
         PainNode *pain = [PainNode nodeWithSize:node.frame.size];
+        pain.zRotation = node.zRotation;
         pain.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
                                     node.frame.origin.y + node.frame.size.height / 2);
         [self addChild:pain];
@@ -165,6 +167,7 @@
     SKNode *suction = (SuctionNode *)[scene childNodeWithName:@"Suction"];
     self.suctionNode = [SuctionNode node];
     self.suctionNode.position = suction.position;
+    self.suctionNode.zRotation = suction.zRotation;
     [self addChild:self.suctionNode];
     
     // 5. Create joint
