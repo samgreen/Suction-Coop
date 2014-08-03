@@ -171,6 +171,18 @@
 
 #pragma mark - Input
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if (self.paused) {
+//        if (self.reachedGoal) {
+//            // Load next level
+//            self.level = self.level + 1;
+//        } else {
+            // Reload this level
+            self.level = self.level;
+//        }
+        self.paused = NO;
+        return;
+    }
+    
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
@@ -206,8 +218,10 @@
     
     if (self.suctionNode.redHealth <= 0 || self.suctionNode.blueHealth <= 0) {
         self.gameOverLabelNode.text = @"Game Over!";
+        self.paused = YES;
     } else if (self.reachedGoal) {
         self.gameOverLabelNode.text = @"You Win!";
+        self.paused = YES;
     }
 }
 
@@ -228,6 +242,7 @@
         [self updateUI];
     } else if ([nodeA.name isEqualToString:@"Goal"]) {
         self.reachedGoal = YES;
+        self.paused = YES;
         [self updateUI];
     } else {
         NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);
