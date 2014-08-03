@@ -118,14 +118,16 @@
     // 1. Load walls
     [scene enumerateChildNodesWithName:@"Wall" usingBlock:^(SKNode *node, BOOL *stop) {
         WallNode *wall = [WallNode nodeWithSize:node.frame.size];
-        wall.position = node.frame.origin;
+        wall.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
+                                    node.frame.origin.y + node.frame.size.height / 2);
         [self addChild:wall];
     }];
     
     // 2. Load pain nodes
     [scene enumerateChildNodesWithName:@"Pain" usingBlock:^(SKNode *node, BOOL *stop) {
         PainNode *pain = [PainNode nodeWithSize:node.frame.size];
-        pain.position = node.frame.origin;
+        pain.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
+                                    node.frame.origin.y + node.frame.size.height / 2);
         [self addChild:pain];
     }];
     

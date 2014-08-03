@@ -26,6 +26,7 @@
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Goal";
         self.shapeNode.fillColor = [UIColor greenColor];
+        self.shapeNode.alpha = 0.5f;
         self.shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-64.f, -64.f, 128.f, 128.f)].CGPath;
         
         self.shapeNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:64.f];
