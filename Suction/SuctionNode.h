@@ -13,6 +13,9 @@
 @property (nonatomic, readonly) SKShapeNode *blueNode;
 @property (nonatomic, readonly) SKShapeNode *redNode;
 
+@property (nonatomic, readonly) NSUInteger blueHealth;
+@property (nonatomic, readonly) NSUInteger redHealth;
+
 - (void)createJoint;
 
 - (void)toggleRedSuction;
@@ -20,5 +23,8 @@
 
 - (void)accelerateRedNode;
 - (void)accelerateBlueNode;
+
+- (void)hurtRedNode;
+- (void)hurtBlueNode;
 
 @end

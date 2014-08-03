@@ -13,6 +13,9 @@
 @property (nonatomic, strong) SKShapeNode *blueNode;
 @property (nonatomic, strong) SKShapeNode *redNode;
 
+@property (nonatomic) NSUInteger redHealth;
+@property (nonatomic) NSUInteger blueHealth;
+
 @end
 
 @implementation SuctionNode
@@ -24,13 +27,17 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        self.blueHealth = 3;
         self.blueNode = [SuctionNode newSuctionNode:[SKColor blueColor] atPosition:CGPointMake(64.f, 0)];
         self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
+        self.blueNode.name = @"BlueSuction";
         [self addChild:self.blueNode];
         [self toggleBlueSuction];
         
+        self.redHealth = 3;
         self.redNode = [SuctionNode newSuctionNode:[SKColor redColor] atPosition:CGPointMake(-64.f, 0)];
         self.redNode.physicsBody.categoryBitMask = SuctionColliderTypeRedSuction;
+        self.redNode.name = @"RedSuction";
         [self addChild:self.redNode];
         [self toggleRedSuction];
     }
@@ -46,7 +53,8 @@
     
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16.f];
     node.physicsBody.usesPreciseCollisionDetection = YES;
-    node.physicsBody.collisionBitMask = (SuctionColliderTypeWall | SuctionColliderTypeGoal | SuctionColliderTypePain);
+    node.physicsBody.categoryBitMask = SuctionColliderTypeWall;
+    node.physicsBody.collisionBitMask = SuctionColliderTypeWall;
     
     return node;
 }
@@ -55,6 +63,16 @@
     
 }
 
+#pragma mark - Health 
+- (void)hurtRedNode {
+    self.redHealth--;
+}
+
+- (void)hurtBlueNode {
+    self.blueHealth--;
+}
+
+#pragma mark - Physics
 - (void)toggleRedSuction {
     self.redNode.physicsBody.dynamic = !self.redNode.physicsBody.dynamic;
 }
@@ -64,15 +82,17 @@
 }
 
 - (void)accelerateRedNode {
-    if (!self.redNode.physicsBody.dynamic) return;
-    
-    [self.redNode.physicsBody applyImpulse:CGVectorMake(100, 0)];
+    [self accelerateNode:self.redNode];
 }
 
 - (void)accelerateBlueNode {
-    if (!self.blueNode.physicsBody.dynamic) return;
+    [self accelerateNode:self.blueNode];
+}
+
+- (void)accelerateNode:(SKNode *)node {
+    if (!node.physicsBody.dynamic) return;
     
-    [self.blueNode.physicsBody applyImpulse:CGVectorMake(100, 0)];
+    [node.physicsBody applyImpulse:CGVectorMake(100, 0)];
 }
 
 @end

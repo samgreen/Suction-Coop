@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         self.shapeNode = [SKShapeNode node];
+        self.shapeNode.name = @"Wall";
         self.shapeNode.fillColor = [UIColor grayColor];
         self.shapeNode.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height) cornerRadius:3.f].CGPath;
         

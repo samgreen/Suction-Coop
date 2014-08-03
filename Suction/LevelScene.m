@@ -12,7 +12,7 @@
 #import "GoalNode.h"
 #import "PainNode.h"
 
-@interface LevelScene ()
+@interface LevelScene () <SKPhysicsContactDelegate>
 
 @property (nonatomic, strong) SuctionNode *suctionNode;
 @property (nonatomic, strong) GoalNode *goalNode;
@@ -24,6 +24,8 @@
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
+        
+        self.physicsWorld.contactDelegate = self;
         
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.physicsBody.collisionBitMask = SuctionColliderTypeBlueSuction | SuctionColliderTypeRedSuction;
@@ -55,6 +57,7 @@
 - (void)initFixedJoint {
     // 1. Create a box to join the two, then add it below them
     SKShapeNode *boxNode = [SKShapeNode node];
+    boxNode.name = @"SuctionBox";
     boxNode.zPosition = 10;
     boxNode.fillColor = [UIColor whiteColor];
     boxNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-64.f, -8.f, 128.f, 16.f)].CGPath;
@@ -62,6 +65,8 @@
     boxNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(128.f, 16.f)];
     // Collide with nothing
     boxNode.physicsBody.collisionBitMask = 0;
+    boxNode.physicsBody.categoryBitMask = 0;
+    boxNode.physicsBody.contactTestBitMask = 0;
     [self.suctionNode addChild:boxNode];
     
     // 2. Create a fixed joint between the blue node and the box
@@ -169,6 +174,18 @@
 
 #pragma mark - Update
 - (void)update:(CFTimeInterval)currentTime {
+    
+}
+
+#pragma mark - Physics Delegate
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    SKPhysicsBody *bodyA = contact.bodyA;
+    SKPhysicsBody *bodyB = contact.bodyB;
+    
+    NSLog(@"Began contact (%@, %@)", bodyA.node.name, bodyB.node.name);
+}
+
+- (void)didEndContact:(SKPhysicsContact *)contact {
     
 }
 
