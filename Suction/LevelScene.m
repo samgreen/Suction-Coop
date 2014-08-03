@@ -18,6 +18,9 @@
 @property (nonatomic, strong) SKLabelNode *blueHealthLabelNode;
 @property (nonatomic, strong) SKLabelNode *gameOverLabelNode;
 
+@property (nonatomic, strong) SKNode *gameLayerNode;
+@property (nonatomic, strong) SKNode *interfaceLayerNode;
+
 @property (nonatomic, strong) SuctionNode *suctionNode;
 @property (nonatomic, strong) GoalNode *goalNode;
 
@@ -29,6 +32,12 @@
 
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
+        self.gameLayerNode = [SKNode node];
+        [self addChild:self.gameLayerNode];
+        
+        self.interfaceLayerNode = [SKNode node];
+        [self addChild:self.interfaceLayerNode];
+        
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
         self.physicsWorld.contactDelegate = self;
@@ -104,7 +113,7 @@
     [self.physicsWorld addJoint:blueJoint];
 }
 
-- (void)initLimitJoint {
+- (void)initLRopeJoint {
     CGPoint redCenter = CGPointMake(self.suctionNode.redNode.position.x + 64.f, self.suctionNode.redNode.position.y);
     CGPoint blueCenter = CGPointMake(self.suctionNode.blueNode.position.x - 64.f, self.suctionNode.blueNode.position.y);
     CGPoint redPos = [self convertPoint:redCenter fromNode:self.suctionNode.redNode];
@@ -120,6 +129,10 @@
     // Load the level archive for this level
     NSString *name = [NSString stringWithFormat:@"Level-%lu", (unsigned long)level];
     SKScene *scene = [LevelScene loadArchive:name];
+    if (scene == nil) {
+        self.level = 1;
+        return;
+    }
     
     // Start with a clean slate
     [self removeAllChildren];
@@ -155,8 +168,8 @@
     [self addChild:self.suctionNode];
     
     // 5. Create joint
-//    [self initLimitJoint];
-    [self initFixedJoint];
+    [self initLRopeJoint];
+//    [self initFixedJoint];
     
     // 6. Reload UI
     [self initUI];
@@ -172,13 +185,13 @@
 #pragma mark - Input
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if (self.paused) {
-//        if (self.reachedGoal) {
-//            // Load next level
-//            self.level = self.level + 1;
-//        } else {
+        if (self.reachedGoal) {
+            // Load next level
+            self.level = self.level + 1;
+        } else {
             // Reload this level
             self.level = self.level;
-//        }
+        }
         self.paused = NO;
         return;
     }
@@ -209,7 +222,7 @@
 
 #pragma mark - Update
 - (void)update:(CFTimeInterval)currentTime {
-    
+
 }
 
 - (void)updateUI {

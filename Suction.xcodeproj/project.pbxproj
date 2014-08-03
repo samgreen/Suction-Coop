@@ -30,6 +30,7 @@
 		51A4316E198B7085007E67C3 /* SuctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4316D198B7085007E67C3 /* SuctionTests.m */; };
 		51A43179198B7389007E67C3 /* SuctionNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A43178198B7389007E67C3 /* SuctionNode.m */; };
 		51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADC9CA198E37CA00217F68 /* MenuScene.m */; };
+		51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-2.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		51A43178198B7389007E67C3 /* SuctionNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuctionNode.m; sourceTree = "<group>"; };
 		51ADC9C9198E37CA00217F68 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		51ADC9CA198E37CA00217F68 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		51ADC9CC198E3EE600217F68 /* Level-2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-2.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 		51216F0C198E238F00490A0C /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				51ADC9CC198E3EE600217F68 /* Level-2.sks */,
 				51216F0A198E231500490A0C /* Level-1.sks */,
 			);
 			name = Levels;
@@ -295,6 +298,7 @@
 				51A4315B198B7084007E67C3 /* Images.xcassets in Resources */,
 				51216F0B198E231500490A0C /* Level-1.sks in Resources */,
 				51A43151198B7084007E67C3 /* Main_iPad.storyboard in Resources */,
+				51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */,
 				51A4314E198B7084007E67C3 /* Main_iPhone.storyboard in Resources */,
 				51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */,
 			);
