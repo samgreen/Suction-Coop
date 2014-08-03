@@ -124,6 +124,15 @@
 			name = Levels;
 			sourceTree = "<group>";
 		};
+		51216F0D198E2DFC00490A0C /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				51A43155198B7084007E67C3 /* LevelScene.h */,
+				51A43156198B7084007E67C3 /* LevelScene.m */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
 		51A4312C198B7084007E67C3 = {
 			isa = PBXGroup;
 			children = (
@@ -158,13 +167,12 @@
 		51A43140198B7084007E67C3 /* Suction */ = {
 			isa = PBXGroup;
 			children = (
+				51216F0D198E2DFC00490A0C /* Scenes */,
 				51216F00198CD22100490A0C /* Nodes */,
 				51A43149198B7084007E67C3 /* AppDelegate.h */,
 				51A4314A198B7084007E67C3 /* AppDelegate.m */,
 				51A43152198B7084007E67C3 /* ViewController.h */,
 				51A43153198B7084007E67C3 /* ViewController.m */,
-				51A43155198B7084007E67C3 /* LevelScene.h */,
-				51A43156198B7084007E67C3 /* LevelScene.m */,
 				51A43141198B7084007E67C3 /* Supporting Files */,
 			);
 			path = Suction;

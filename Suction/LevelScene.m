@@ -14,6 +14,9 @@
 
 @interface LevelScene () <SKPhysicsContactDelegate>
 
+@property (nonatomic, strong) SKLabelNode *redHealthLabelNode;
+@property (nonatomic, strong) SKLabelNode *blueHealthLabelNode;
+
 @property (nonatomic, strong) SuctionNode *suctionNode;
 @property (nonatomic, strong) GoalNode *goalNode;
 
@@ -52,6 +55,14 @@
     SKLabelNode *blueForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor blueColor]];
     blueForceLabelNode.position = CGPointMake(944, 576);
     [self addChild:blueForceLabelNode];
+    
+    self.blueHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor blueColor]];
+    self.blueHealthLabelNode.position = CGPointMake(944, 10);
+    [self addChild:self.blueHealthLabelNode];
+    
+    self.redHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor redColor]];
+    self.redHealthLabelNode.position = CGPointMake(80, 10);
+    [self addChild:self.redHealthLabelNode];
 }
 
 - (void)initFixedJoint {
@@ -177,12 +188,31 @@
     
 }
 
+- (void)updateUI {
+    self.redHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.redHealth];
+    self.blueHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.blueHealth];
+}
+
 #pragma mark - Physics Delegate
 - (void)didBeginContact:(SKPhysicsContact *)contact {
-    SKPhysicsBody *bodyA = contact.bodyA;
-    SKPhysicsBody *bodyB = contact.bodyB;
+    SKNode *nodeA = contact.bodyA.node;
+    SKNode *nodeB = contact.bodyB.node;
     
-    NSLog(@"Began contact (%@, %@)", bodyA.node.name, bodyB.node.name);
+    // Did we hit a pain node?
+    if ([nodeA.name isEqualToString:@"Pain"]) {
+        
+        // Determine what color node hit the pain node
+        if ([nodeB.name isEqualToString:@"BlueSuction"]) {
+            [self.suctionNode hurtBlueNode];
+        } else if ([nodeB.name isEqualToString:@"RedSuction"]) {
+            [self.suctionNode hurtRedNode];
+        }
+        [self updateUI];
+    } else if ([nodeA.name isEqualToString:@"Goal"]) {
+        NSLog(@"Goal!!!");
+    } else {
+        NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);
+    }
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact {
