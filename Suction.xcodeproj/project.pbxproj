@@ -11,6 +11,8 @@
 		51216F06198CD26100490A0C /* PainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51216F05198CD26100490A0C /* PainNode.m */; };
 		51216F09198E1D6E00490A0C /* WallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51216F08198E1D6E00490A0C /* WallNode.m */; };
 		51216F0B198E231500490A0C /* Level-1.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51216F0A198E231500490A0C /* Level-1.sks */; };
+		51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4D198F4FA400D17825 /* Main_iPad.storyboard */; };
+		51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */; };
 		51A43139198B7084007E67C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A43138198B7084007E67C3 /* Foundation.framework */; };
 		51A4313B198B7084007E67C3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A4313A198B7084007E67C3 /* CoreGraphics.framework */; };
 		51A4313D198B7084007E67C3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A4313C198B7084007E67C3 /* UIKit.framework */; };
@@ -18,8 +20,6 @@
 		51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 51A43143198B7084007E67C3 /* InfoPlist.strings */; };
 		51A43147198B7084007E67C3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A43146198B7084007E67C3 /* main.m */; };
 		51A4314B198B7084007E67C3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A4314A198B7084007E67C3 /* AppDelegate.m */; };
-		51A4314E198B7084007E67C3 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A4314C198B7084007E67C3 /* Main_iPhone.storyboard */; };
-		51A43151198B7084007E67C3 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A4314F198B7084007E67C3 /* Main_iPad.storyboard */; };
 		51A43154198B7084007E67C3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A43153198B7084007E67C3 /* ViewController.m */; };
 		51A43157198B7084007E67C3 /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A43156198B7084007E67C3 /* LevelScene.m */; };
 		51A4315B198B7084007E67C3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A4315A198B7084007E67C3 /* Images.xcassets */; };
@@ -81,6 +81,8 @@
 		51216F07198E1D6E00490A0C /* WallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallNode.h; sourceTree = "<group>"; };
 		51216F08198E1D6E00490A0C /* WallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallNode.m; sourceTree = "<group>"; };
 		51216F0A198E231500490A0C /* Level-1.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-1.sks"; sourceTree = "<group>"; };
+		51590F4D198F4FA400D17825 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
+		51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		51A43135198B7084007E67C3 /* Suction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51A43138198B7084007E67C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		51A4313A198B7084007E67C3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,8 +94,6 @@
 		51A43148198B7084007E67C3 /* Suction-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Suction-Prefix.pch"; sourceTree = "<group>"; };
 		51A43149198B7084007E67C3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51A4314A198B7084007E67C3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		51A4314D198B7084007E67C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		51A43150198B7084007E67C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		51A43152198B7084007E67C3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		51A43153198B7084007E67C3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		51A43155198B7084007E67C3 /* LevelScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
@@ -287,11 +287,11 @@
 		51A43141198B7084007E67C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				51590F4D198F4FA400D17825 /* Main_iPad.storyboard */,
+				51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */,
 				51A9F72D198E627A003CE440 /* Particle Effects */,
 				51216F0C198E238F00490A0C /* Levels */,
 				51A4315A198B7084007E67C3 /* Images.xcassets */,
-				51A4314C198B7084007E67C3 /* Main_iPhone.storyboard */,
-				51A4314F198B7084007E67C3 /* Main_iPad.storyboard */,
 				51A43142198B7084007E67C3 /* Suction-Info.plist */,
 				51A43143198B7084007E67C3 /* InfoPlist.strings */,
 				51A43146198B7084007E67C3 /* main.m */,
@@ -440,17 +440,17 @@
 				51A9F730198E62B6003CE440 /* GoalParticle.sks in Resources */,
 				51A9F73D198E6757003CE440 /* SparkParticle.sks in Resources */,
 				51A4315B198B7084007E67C3 /* Images.xcassets in Resources */,
+				51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */,
 				51216F0B198E231500490A0C /* Level-1.sks in Resources */,
-				51A43151198B7084007E67C3 /* Main_iPad.storyboard in Resources */,
 				51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */,
 				51A9F74C198F31C0003CE440 /* KamcordiPhone.storyboardc in Resources */,
 				51A9F74D198F31C0003CE440 /* KC_GTMOAuth2ViewTouch.nib in Resources */,
 				51A9F739198E66DA003CE440 /* spark.png in Resources */,
 				51A9F731198E62B6003CE440 /* bokeh.png in Resources */,
 				51A9F74A198F31C0003CE440 /* Kamcord.bundle in Resources */,
-				51A4314E198B7084007E67C3 /* Main_iPhone.storyboard in Resources */,
 				51A9F73B198E6747003CE440 /* FirefliesParticle.sks in Resources */,
 				51A9F738198E66DA003CE440 /* MagicParticle.sks in Resources */,
+				51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */,
 				51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */,
 				51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */,
 				51A9F741198E6865003CE440 /* Level-4.sks in Resources */,
@@ -510,22 +510,6 @@
 				51A43144198B7084007E67C3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		51A4314C198B7084007E67C3 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				51A4314D198B7084007E67C3 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		51A4314F198B7084007E67C3 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				51A43150198B7084007E67C3 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		51A4316A198B7085007E67C3 /* InfoPlist.strings */ = {
@@ -623,6 +607,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Suction/Suction-Prefix.pch";
 				INFOPLIST_FILE = "Suction/Suction-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -641,6 +626,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Suction/Suction-Prefix.pch";
 				INFOPLIST_FILE = "Suction/Suction-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
