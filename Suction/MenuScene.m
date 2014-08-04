@@ -10,4 +10,16 @@
 
 @implementation MenuScene
 
++ (instancetype)sceneWithSize:(CGSize)size {
+    return [[self alloc] initWithSize:size];
+}
+
+- (instancetype)initWithSize:(CGSize)size {
+    self = [super initWithSize:size];
+    if (self) {
+        
+    }
+    return self;
+}
+
 @end

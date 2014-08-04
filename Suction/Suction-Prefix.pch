@@ -17,7 +17,8 @@
 
 /* Bitmask for the different entities with physics bodies. */
 typedef enum : uint8_t {
-    SuctionColliderTypeOrangeSuction       = 1,
+    SuctionColliderTypeNone             = 0,
+    SuctionColliderTypeOrangeSuction    = 1,
     SuctionColliderTypeBlueSuction      = 2,
     SuctionColliderTypePain             = 4,
     SuctionColliderTypeGoal             = 8,

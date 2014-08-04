@@ -21,13 +21,11 @@
 - (instancetype)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
-        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
-        
         self.spriteNode = [SKSpriteNode spriteNodeWithImageNamed:@"wall"];
         self.spriteNode.name = @"Wall";
-        CGRect unitRect = CGRectMake(0, 0,
-                                     size.width / self.spriteNode.texture.size.width,
-                                     size.height / self.spriteNode.texture.size.height);
+        
+        CGSize textureSize = self.spriteNode.texture.size;
+        CGRect unitRect = CGRectMake(0, 0, size.width / textureSize.width, size.height / textureSize.height);
         self.spriteNode.texture = [SKTexture textureWithRect:unitRect inTexture:self.spriteNode.texture];
         self.spriteNode.size = size;
         
@@ -37,7 +35,7 @@
 //                                                                                                       contrast:0.f];
 //        }
         
-        self.spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
+        self.spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
         self.spriteNode.physicsBody.dynamic = NO;
         self.spriteNode.physicsBody.categoryBitMask = SuctionColliderTypeWall;
         self.spriteNode.physicsBody.collisionBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;

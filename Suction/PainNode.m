@@ -11,8 +11,6 @@
 
 @interface PainNode ()
 
-@property (nonatomic, strong) SKShapeNode *shapeNode;
-
 @end
 
 @implementation PainNode
@@ -24,18 +22,13 @@
 - (instancetype)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
-        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        self.name = @"Pain";
         
-        self.shapeNode = [SKShapeNode node];
-        self.shapeNode.name = @"Pain";
-        
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
-        self.shapeNode.physicsBody.dynamic = NO;
-        self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypePain;
-        self.shapeNode.physicsBody.collisionBitMask = 0; // No collide
-        self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
-        
-        [self addChild:self.shapeNode];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
+        self.physicsBody.dynamic = NO;
+        self.physicsBody.categoryBitMask = SuctionColliderTypePain;
+        self.physicsBody.collisionBitMask = SuctionColliderTypeNone;
+        self.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
         SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"FireParticle"];
         emitter.particlePosition = CGPointZero;

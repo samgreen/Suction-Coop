@@ -36,6 +36,7 @@
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         self.name = @"Scene";
+        self.scaleMode = SKSceneScaleModeAspectFill;
         
         self.gameLayerNode = [SKNode node];
         [self addChild:self.gameLayerNode];
@@ -107,9 +108,9 @@
     boxNode.position = CGPointZero;
     boxNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(96.f, 8.f)];
     // Collide with nothing
-    boxNode.physicsBody.collisionBitMask = 0;
-    boxNode.physicsBody.categoryBitMask = 0;
-    boxNode.physicsBody.contactTestBitMask = 0;
+    boxNode.physicsBody.collisionBitMask = SuctionColliderTypeNone;
+    boxNode.physicsBody.categoryBitMask = SuctionColliderTypeNone;
+    boxNode.physicsBody.contactTestBitMask = SuctionColliderTypeNone;
     [self.suctionNode addChild:boxNode];
     
     // 2. Create a fixed joint between the blue node and the box
