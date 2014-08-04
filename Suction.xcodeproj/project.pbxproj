@@ -12,6 +12,15 @@
 		51216F09198E1D6E00490A0C /* WallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51216F08198E1D6E00490A0C /* WallNode.m */; };
 		51216F0B198E231500490A0C /* Level-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51216F0A198E231500490A0C /* Level-3.sks */; };
 		5125CBCB198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5125CBCA198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m */; };
+		5125CBD1198F8D9C0032A81E /* GravityNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5125CBD0198F8D9C0032A81E /* GravityNode.m */; };
+		5125CBD3198FA09E0032A81E /* GravityParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5125CBD2198FA09E0032A81E /* GravityParticle.sks */; };
+		5125CBD6198FA57B0032A81E /* woodbg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5125CBD4198FA57B0032A81E /* woodbg@2x.png */; };
+		5125CBD7198FA57B0032A81E /* woodbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5125CBD5198FA57B0032A81E /* woodbg.png */; };
+		51416AB9198FB22600DC7FE2 /* heart_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 51416AB5198FB22600DC7FE2 /* heart_empty.png */; };
+		51416ABA198FB22600DC7FE2 /* heart_empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51416AB6198FB22600DC7FE2 /* heart_empty@2x.png */; };
+		51416ABB198FB22600DC7FE2 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 51416AB7198FB22600DC7FE2 /* heart.png */; };
+		51416ABC198FB22600DC7FE2 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51416AB8198FB22600DC7FE2 /* heart@2x.png */; };
+		51416ABF198FB23500DC7FE2 /* HealthNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51416ABE198FB23500DC7FE2 /* HealthNode.m */; };
 		51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4D198F4FA400D17825 /* Main_iPad.storyboard */; };
 		51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */; };
 		51A43139198B7084007E67C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A43138198B7084007E67C3 /* Foundation.framework */; };
@@ -88,6 +97,17 @@
 		51216F0A198E231500490A0C /* Level-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-3.sks"; sourceTree = "<group>"; };
 		5125CBC9198F84B40032A81E /* SKEffectNode+CoreImageHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEffectNode+CoreImageHelpers.h"; sourceTree = "<group>"; };
 		5125CBCA198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEffectNode+CoreImageHelpers.m"; sourceTree = "<group>"; };
+		5125CBCF198F8D9C0032A81E /* GravityNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GravityNode.h; sourceTree = "<group>"; };
+		5125CBD0198F8D9C0032A81E /* GravityNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GravityNode.m; sourceTree = "<group>"; };
+		5125CBD2198FA09E0032A81E /* GravityParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GravityParticle.sks; sourceTree = "<group>"; };
+		5125CBD4198FA57B0032A81E /* woodbg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "woodbg@2x.png"; sourceTree = "<group>"; };
+		5125CBD5198FA57B0032A81E /* woodbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = woodbg.png; sourceTree = "<group>"; };
+		51416AB5198FB22600DC7FE2 /* heart_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart_empty.png; sourceTree = "<group>"; };
+		51416AB6198FB22600DC7FE2 /* heart_empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart_empty@2x.png"; sourceTree = "<group>"; };
+		51416AB7198FB22600DC7FE2 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
+		51416AB8198FB22600DC7FE2 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
+		51416ABD198FB23500DC7FE2 /* HealthNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthNode.h; sourceTree = "<group>"; };
+		51416ABE198FB23500DC7FE2 /* HealthNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthNode.m; sourceTree = "<group>"; };
 		51590F4D198F4FA400D17825 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		51A43135198B7084007E67C3 /* Suction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +218,12 @@
 		5101A4C1198F7C2700F1B17C /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				51416AB5198FB22600DC7FE2 /* heart_empty.png */,
+				51416AB6198FB22600DC7FE2 /* heart_empty@2x.png */,
+				51416AB7198FB22600DC7FE2 /* heart.png */,
+				51416AB8198FB22600DC7FE2 /* heart@2x.png */,
+				5125CBD4198FA57B0032A81E /* woodbg@2x.png */,
+				5125CBD5198FA57B0032A81E /* woodbg.png */,
 				51A4315A198B7084007E67C3 /* Images.xcassets */,
 				51AFF006198F72470098D89C /* wall@2x.png */,
 				51AFF004198F71C10098D89C /* wall.png */,
@@ -218,6 +244,10 @@
 				51216F05198CD26100490A0C /* PainNode.m */,
 				51216F07198E1D6E00490A0C /* WallNode.h */,
 				51216F08198E1D6E00490A0C /* WallNode.m */,
+				5125CBCF198F8D9C0032A81E /* GravityNode.h */,
+				5125CBD0198F8D9C0032A81E /* GravityNode.m */,
+				51416ABD198FB23500DC7FE2 /* HealthNode.h */,
+				51416ABE198FB23500DC7FE2 /* HealthNode.m */,
 			);
 			name = Nodes;
 			sourceTree = "<group>";
@@ -343,6 +373,7 @@
 		51A9F72D198E627A003CE440 /* Particle Effects */ = {
 			isa = PBXGroup;
 			children = (
+				5125CBD2198FA09E0032A81E /* GravityParticle.sks */,
 				51A9F72E198E62B6003CE440 /* GoalParticle.sks */,
 				51A9F72F198E62B6003CE440 /* bokeh.png */,
 				51A9F736198E66DA003CE440 /* MagicParticle.sks */,
@@ -469,9 +500,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51416ABA198FB22600DC7FE2 /* heart_empty@2x.png in Resources */,
+				5125CBD3198FA09E0032A81E /* GravityParticle.sks in Resources */,
 				51AFF007198F72470098D89C /* wall@2x.png in Resources */,
 				51A9F74B198F31C0003CE440 /* KamcordiPad.storyboardc in Resources */,
+				51416ABB198FB22600DC7FE2 /* heart.png in Resources */,
 				51A9F730198E62B6003CE440 /* GoalParticle.sks in Resources */,
+				5125CBD7198FA57B0032A81E /* woodbg.png in Resources */,
 				51A9F73D198E6757003CE440 /* SparkParticle.sks in Resources */,
 				51A4315B198B7084007E67C3 /* Images.xcassets in Resources */,
 				51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */,
@@ -479,6 +514,7 @@
 				51ADC9CD198E3EE600217F68 /* Level-4.sks in Resources */,
 				51A9F74C198F31C0003CE440 /* KamcordiPhone.storyboardc in Resources */,
 				51A9F74D198F31C0003CE440 /* KC_GTMOAuth2ViewTouch.nib in Resources */,
+				51416AB9198FB22600DC7FE2 /* heart_empty.png in Resources */,
 				51A9F739198E66DA003CE440 /* spark.png in Resources */,
 				51A9F731198E62B6003CE440 /* bokeh.png in Resources */,
 				51A9F74A198F31C0003CE440 /* Kamcord.bundle in Resources */,
@@ -488,7 +524,9 @@
 				51A9F738198E66DA003CE440 /* MagicParticle.sks in Resources */,
 				51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */,
 				51A9F73F198E67CA003CE440 /* Level-1.sks in Resources */,
+				5125CBD6198FA57B0032A81E /* woodbg@2x.png in Resources */,
 				51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */,
+				51416ABC198FB22600DC7FE2 /* heart@2x.png in Resources */,
 				51AFF00A198F76520098D89C /* spiral.fsh in Resources */,
 				51A9F741198E6865003CE440 /* Level-2.sks in Resources */,
 			);
@@ -509,10 +547,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51416ABF198FB23500DC7FE2 /* HealthNode.m in Sources */,
 				51216F03198CD25800490A0C /* GoalNode.m in Sources */,
 				51A43157198B7084007E67C3 /* LevelScene.m in Sources */,
 				51A9F735198E6339003CE440 /* SKNode+ArchiveHelpers.m in Sources */,
 				51A43179198B7389007E67C3 /* SuctionNode.m in Sources */,
+				5125CBD1198F8D9C0032A81E /* GravityNode.m in Sources */,
 				51216F09198E1D6E00490A0C /* WallNode.m in Sources */,
 				51216F06198CD26100490A0C /* PainNode.m in Sources */,
 				5125CBCB198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m in Sources */,

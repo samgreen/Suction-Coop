@@ -25,3 +25,8 @@ typedef enum : uint8_t {
     SuctionColliderTypeWall             = 16,
     SuctionColliderTypeEdgeWall         = 32
 } SuctionColliderType;
+
+typedef enum : uint8_t {
+    SuctionFieldTypeNone                = 0,
+    SuctionFieldTypeRadialGravity       = 1,
+} SuctionFieldType;

@@ -25,14 +25,14 @@ static NSString *const kKamcordDeveloperSecret  = @"";
 #ifdef DEBUG
 //    skView.showsFPS = YES;
 //    skView.showsNodeCount = YES;
-    if ([skView respondsToSelector:@selector(showsPhysics)]) {
-        skView.showsPhysics = YES;
-    }
+//    if ([skView respondsToSelector:@selector(showsPhysics)]) {
+//        skView.showsPhysics = YES;
+//    }
 #endif
     
     // Create and configure the scene.
     LevelScene *scene = [LevelScene sceneWithSize:CGSizeMake(1024, 768)];
-    scene.level = 1;
+    scene.level = 2;
     
     // Present the scene.
     [skView presentScene:scene];

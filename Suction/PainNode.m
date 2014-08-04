@@ -30,11 +30,17 @@
         self.physicsBody.collisionBitMask = SuctionColliderTypeNone;
         self.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
+#if !(TARGET_IPHONE_SIMULATOR)
         SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"FireParticle"];
         emitter.particlePosition = CGPointZero;
         emitter.particlePositionRange = CGVectorMake(size.width, size.height);
         emitter.particleBirthRate = size.height * size.width * 0.05f;
         [self addChild:emitter];
+#else
+        SKShapeNode *shapeNode = [SKShapeNode shapeNodeWithRectOfSize:size];
+        shapeNode.fillColor = [UIColor redColor];
+        [self addChild:shapeNode];
+#endif
     }
     return self;
 }

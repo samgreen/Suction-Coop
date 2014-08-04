@@ -12,7 +12,7 @@
 
 + (instancetype)nodeWithFilterNamed:(NSString *)filterName andInputRadius:(CGFloat)inputRadius {
     SKEffectNode *effectNode = [self nodeWithFilterNamed:filterName];
-    [effectNode.filter setValue:@(inputRadius) forKey:@"inputRadius"];
+    [effectNode.filter setValue:@(inputRadius) forKey:kCIInputRadiusKey];
     return effectNode;
 }
 

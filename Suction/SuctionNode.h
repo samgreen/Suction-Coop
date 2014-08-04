@@ -27,4 +27,6 @@
 - (void)hurtOrangeNode;
 - (void)hurtBlueNode;
 
+- (void)updateEffects;
+
 @end

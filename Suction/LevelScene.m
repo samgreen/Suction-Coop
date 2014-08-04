@@ -11,15 +11,18 @@
 #import "WallNode.h"
 #import "GoalNode.h"
 #import "PainNode.h"
+#import "GravityNode.h"
+#import "HealthNode.h"
 #import "SKNode+ArchiveHelpers.h"
 
 #import <Kamcord/Kamcord.h>
 
 @interface LevelScene () <SKPhysicsContactDelegate>
 
-@property (nonatomic, strong) SKLabelNode *orangeHealthLabelNode;
-@property (nonatomic, strong) SKLabelNode *blueHealthLabelNode;
 @property (nonatomic, strong) SKLabelNode *gameOverLabelNode;
+
+@property (nonatomic, strong) HealthNode *orangeHealthNode;
+@property (nonatomic, strong) HealthNode *blueHealthNode;
 
 @property (nonatomic, strong) SKNode *gameLayerNode;
 @property (nonatomic, strong) SKNode *interfaceLayerNode;
@@ -52,50 +55,50 @@
         self.physicsBody.categoryBitMask = SuctionColliderTypeEdgeWall;
         self.physicsBody.collisionBitMask = SuctionColliderTypeBlueSuction | SuctionColliderTypeOrangeSuction;
         self.physicsBody.contactTestBitMask = self.physicsBody.collisionBitMask;
-        
-        
     }
     return self;
 }
 
 #pragma mark - Init Methods
 - (void)initUI {
-    SKLabelNode *orangeSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor orangeColor]];
+    SKLabelNode *orangeSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor orangeColor]];
     orangeSuctionLabelNode.zRotation = -M_PI_2;
-    orangeSuctionLabelNode.position = CGPointMake(60, 192);
+    orangeSuctionLabelNode.position = CGPointMake(20, 192);
     [self addChild:orangeSuctionLabelNode];
     
-    SKLabelNode *orangeForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor orangeColor]];
+    SKLabelNode *orangeForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor orangeColor]];
     orangeForceLabelNode.zRotation = -M_PI_2;
-    orangeForceLabelNode.position = CGPointMake(60, 576);
+    orangeForceLabelNode.position = CGPointMake(20, 576);
     [self addChild:orangeForceLabelNode];
     
-    SKLabelNode *blueSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor blueColor]];
-    blueSuctionLabelNode.position = CGPointMake(964, 192);
+    SKLabelNode *blueSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor blueColor]];
+    blueSuctionLabelNode.position = CGPointMake(1004, 192);
     blueSuctionLabelNode.zRotation = M_PI_2;
     [self addChild:blueSuctionLabelNode];
     
-    SKLabelNode *blueForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor blueColor]];
+    SKLabelNode *blueForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor blueColor]];
     blueForceLabelNode.zRotation = M_PI_2;
-    blueForceLabelNode.position = CGPointMake(964, 576);
+    blueForceLabelNode.position = CGPointMake(1004, 576);
     [self addChild:blueForceLabelNode];
     
-    self.blueHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor blueColor]];
-    self.blueHealthLabelNode.zRotation = 0;
-    self.blueHealthLabelNode.position = CGPointMake(944, 10);
-    [self addChild:self.blueHealthLabelNode];
-    
-    self.orangeHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor orangeColor]];
-    self.orangeHealthLabelNode.zRotation = 0;
-    self.orangeHealthLabelNode.position = CGPointMake(80, 10);
-    [self addChild:self.orangeHealthLabelNode];
-    
     self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
-    self.gameOverLabelNode.zRotation = 0;
-    self.gameOverLabelNode.fontSize = 48.f;
-    self.gameOverLabelNode.position = CGPointMake(CGRectGetWidth(self.frame) / 2,
-                                                  CGRectGetHeight(self.frame) / 2);
+    self.gameOverLabelNode.fontName = @"Superclarendon-BlackItalic";
+    self.gameOverLabelNode.zRotation = M_PI_4 * 0.3f;
+    self.gameOverLabelNode.fontSize = 64.f;
+    self.gameOverLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     [self addChild:self.gameOverLabelNode];
+    
+    self.orangeHealthNode = [HealthNode node];
+    self.orangeHealthNode.color = [SKColor orangeColor];
+    self.orangeHealthNode.position = CGPointMake(50, CGRectGetMidY(self.frame) + 48.f);
+    self.orangeHealthNode.zRotation = -M_PI_2;
+    [self addChild:self.orangeHealthNode];
+    
+    self.blueHealthNode = [HealthNode node];
+    self.blueHealthNode.color = [SKColor blueColor];
+    self.blueHealthNode.position = CGPointMake(974, CGRectGetMidY(self.frame) - 48.f);
+    self.blueHealthNode.zRotation = M_PI_2;
+    [self addChild:self.blueHealthNode];
 }
 
 - (void)initFixedJoint {
@@ -153,7 +156,23 @@
     [self removeAllChildren];
     self.reachedGoal = NO;
     
-    // 1. Load walls
+    // Level title
+    SKLabelNode *titleLabelNode = [LevelScene newLabelNode:name withFontColor:[SKColor whiteColor]];
+    titleLabelNode.fontName = @"Superclarendon-Regular";
+    titleLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 40);
+    [self addChild:titleLabelNode];
+    
+    // Load background
+    SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"woodbg"];
+    // Enable normal mapping if possible
+//    if ([backgroundNode respondsToSelector:@selector(normalTexture)]) {
+//        backgroundNode.normalTexture = [backgroundNode.texture textureByGeneratingNormalMapWithSmoothness:1
+//                                                                                                 contrast:1];
+//    }
+    backgroundNode.anchorPoint = CGPointZero;
+    [self addChild:backgroundNode];
+    
+    // Load walls
     [scene enumerateChildNodesWithName:@"Wall" usingBlock:^(SKNode *node, BOOL *stop) {
         SKSpriteNode *spriteNode = (SKSpriteNode *)node;
         WallNode *wall = [WallNode nodeWithSize:spriteNode.size];
@@ -163,7 +182,7 @@
         [self addChild:wall];
     }];
     
-    // 2. Load pain nodes
+    // Load pain nodes
     [scene enumerateChildNodesWithName:@"Pain" usingBlock:^(SKNode *node, BOOL *stop) {
         SKSpriteNode *spriteNode = (SKSpriteNode *)node;
         PainNode *pain = [PainNode nodeWithSize:spriteNode.size];
@@ -173,14 +192,22 @@
         [self addChild:pain];
     }];
     
-    // 3. Load goal
+    // Load gravity nodes
+    [scene enumerateChildNodesWithName:@"Gravity" usingBlock:^(SKNode *node, BOOL *stop) {
+        GravityNode *gravity = [GravityNode node];
+        gravity.position = CGPointMake(node.frame.origin.x + node.frame.size.width / 2,
+                                       node.frame.origin.y + node.frame.size.height / 2);
+        [self addChild:gravity];
+    }];
+    
+    // Load goal
     SKNode *goal  = (GoalNode *)[scene childNodeWithName:@"Goal"];
     self.goalNode = [GoalNode node];
     self.goalNode.position = goal.position;
     [self addChild:self.goalNode];
     
     
-    // 4. Load Suction
+    // Load Suction
     SKNode *suction = (SuctionNode *)[scene childNodeWithName:@"Suction"];
     self.suctionNode = [SuctionNode node];
     self.suctionNode.physicsWorld = self.physicsWorld;
@@ -190,11 +217,11 @@
     [self.suctionNode toggleBlueSuction];
     [self.suctionNode toggleOrangeSuction];
     
-    // 5. Create joint
+    // Create joint
     //[self initRopeJoint];
     [self initFixedJoint];
     
-    // 6. Reload UI
+    // Reload UI
     [self initUI];
 }
 
@@ -251,17 +278,32 @@
 }
 
 - (void)updateUI {
-    self.orangeHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.orangeHealth];
-    self.blueHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.blueHealth];
+    self.orangeHealthNode.health = self.suctionNode.orangeHealth;
+    self.blueHealthNode.health = self.suctionNode.blueHealth;
     
-    if (self.suctionNode.orangeHealth <= 0 || self.suctionNode.blueHealth <= 0) {
-        self.gameOverLabelNode.text = @"Game Over!";
+    BOOL orangeDied = (self.suctionNode.orangeHealth <= 0);
+    BOOL blueDied = (self.suctionNode.blueHealth <= 0);
+    if (orangeDied || blueDied) {
+        self.gameOverLabelNode.text = orangeDied ? @"Orange Died!" : @"Blue Died!";
+        self.gameOverLabelNode.fontColor = orangeDied ? [SKColor orangeColor] : [SKColor blueColor];
         self.paused = YES;
         [self stopRecording];
     } else if (self.reachedGoal) {
         self.gameOverLabelNode.text = @"You Win!";
+        self.gameOverLabelNode.fontColor = [SKColor greenColor];
         self.paused = YES;
         [self stopRecording];
+    }
+}
+
+#pragma mark Physics
+- (void)didSimulatePhysics {
+    [self.suctionNode updateEffects];
+    
+    if (!CGRectIntersectsRect(self.frame, [self.suctionNode calculateAccumulatedFrame])) {
+        self.gameOverLabelNode.text = @"You fell in to the abyss!";
+        self.gameOverLabelNode.fontColor = [UIColor whiteColor];
+        self.paused = YES;
     }
 }
 
@@ -292,11 +334,14 @@
     }
 }
 
-- (void)didEndContact:(SKPhysicsContact *)contact {
-    
+#pragma mark - Helpers
++ (SKLabelNode *)newControlNode:(NSString *)text withFontColor:(SKColor *)fontColor {
+    SKLabelNode *labelNode = [self newLabelNode:text withFontColor:fontColor];
+    labelNode.fontName = @"AvenirNext-Bold";
+    labelNode.fontSize = 32.f;
+    return labelNode;
 }
 
-#pragma mark - Helpers
 + (SKLabelNode *)newLabelNode:(NSString *)text withFontColor:(SKColor *)fontColor {
     SKLabelNode *labelNode = [SKLabelNode labelNodeWithFontNamed:@"Helvetica-Neue"];
     labelNode.zPosition = 1000;

@@ -7,12 +7,19 @@
 //
 
 #import "SuctionNode.h"
+#import "HealthNode.h"
 #import "SKEffectNode+CoreImageHelpers.h"
 
 @interface SuctionNode ()
 
+@property (nonatomic, strong) SKEffectNode *blueEffectNode;
+@property (nonatomic, strong) SKEffectNode *orangeEffectNode;
+
 @property (nonatomic, strong) SKShapeNode *blueNode;
 @property (nonatomic, strong) SKShapeNode *orangeNode;
+
+@property (nonatomic, strong) HealthNode *blueHealthNode;
+@property (nonatomic, strong) HealthNode *orangeHealthNode;
 
 @property (nonatomic, strong) SKPhysicsJointPin *bluePinJoint;
 @property (nonatomic, strong) SKPhysicsJointPin *orangePinJoint;
@@ -24,28 +31,43 @@
 
 @implementation SuctionNode
 
-+ (instancetype)node {
-    return [[self alloc] init];
-}
-
 - (instancetype)init {
     self = [super init];
     if (self) {
         self.blueHealth = 3;
         self.orangeHealth = 3;
         
-        SKEffectNode *effectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur" andInputRadius:8];
-        [self addChild:effectNode];
+//#if DEBUG
+//        self.blueHealth = 100;
+//        self.orangeHealth = 100;
+//#endif
+        
+#if !(TARGET_IPHONE_SIMULATOR)
+        self.blueEffectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur"
+                                                 andInputRadius:5];
+#else
+        self.blueEffectNode = [SKEffectNode node];
+#endif
+        [self addChild:self.blueEffectNode];
+
+#if !(TARGET_IPHONE_SIMULATOR)
+        self.orangeEffectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur"
+                                                   andInputRadius:5];
+#else
+        self.orangeEffectNode = [SKEffectNode node];
+#endif
+        [self addChild:self.orangeEffectNode];
+
         
         self.blueNode = [SuctionNode newSuctionNode:[SKColor blueColor] atPosition:CGPointMake(64.f, 0)];
         self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
         self.blueNode.name = @"BlueSuction";
-        [effectNode addChild:self.blueNode];
+        [self.blueEffectNode addChild:self.blueNode];
         
         self.orangeNode = [SuctionNode newSuctionNode:[SKColor orangeColor] atPosition:CGPointMake(-64.f, 0)];
         self.orangeNode.physicsBody.categoryBitMask = SuctionColliderTypeOrangeSuction;
         self.orangeNode.name = @"OrangeSuction";
-        [effectNode addChild:self.orangeNode];
+        [self.orangeEffectNode addChild:self.orangeNode];
     }
     return self;
 }
@@ -63,6 +85,12 @@
     node.physicsBody.collisionBitMask = SuctionColliderTypeWall;
     
     return node;
+}
+
+#pragma mark - Update
+- (void)updateEffects {
+//    [self.blueEffectNode.filter setValue:@(self.blueNode.zRotation) forKey:@"inputAngle"];
+//    [self.orangeEffectNode.filter setValue:@(self.orangeNode.zRotation) forKey:@"inputAngle"];
 }
 
 #pragma mark - Health 
@@ -90,6 +118,7 @@
     BOOL jointDisabled = (self.orangePinJoint == nil);
     self.orangeNode.alpha = jointDisabled ? 1.f : 0.3f;
     self.orangeNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
+    self.orangeEffectNode.shouldEnableEffects = jointDisabled;
 }
 
 - (void)toggleBlueSuction {
@@ -107,6 +136,7 @@
     BOOL jointDisabled = (self.bluePinJoint == nil);
     self.blueNode.alpha = jointDisabled ? 1.f : 0.3f;
     self.blueNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
+    self.blueEffectNode.shouldEnableEffects = jointDisabled;
 }
 
 - (void)accelerateOrangeNode {
