@@ -209,10 +209,12 @@
         self.paused = NO;
         return;
     }
-    
+
+#ifdef KAMCORD_ENABLED
     if (![Kamcord isRecording]) {
         [Kamcord startRecording];
     }
+#endif
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
@@ -250,17 +252,24 @@
     if (self.suctionNode.redHealth <= 0 || self.suctionNode.blueHealth <= 0) {
         self.gameOverLabelNode.text = @"Game Over!";
         self.paused = YES;
+        
+#ifdef KAMCORD_ENABLED
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [Kamcord stopRecording];
             [Kamcord showView];
         });
+#endif
     } else if (self.reachedGoal) {
         self.gameOverLabelNode.text = @"You Win!";
         self.paused = YES;
+        
+#ifdef KAMCORD_ENABLED
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [Kamcord stopRecording];
             [Kamcord showView];
-        });    }
+        });
+#endif
+    }
 }
 
 #pragma mark - Physics Delegate
