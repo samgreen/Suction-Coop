@@ -103,9 +103,9 @@
     boxNode.name = @"SuctionBox";
     boxNode.zPosition = 10;
     boxNode.fillColor = [UIColor whiteColor];
-    boxNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-64.f, -8.f, 128.f, 16.f)].CGPath;
+    boxNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-48.f, -4.f, 96.f, 8.f)].CGPath;
     boxNode.position = CGPointZero;
-    boxNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(128.f, 16.f)];
+    boxNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(96.f, 8.f)];
     // Collide with nothing
     boxNode.physicsBody.collisionBitMask = 0;
     boxNode.physicsBody.categoryBitMask = 0;
@@ -218,11 +218,7 @@
         return;
     }
 
-#ifdef KAMCORD_ENABLED
-    if (![Kamcord isRecording]) {
-        [Kamcord startRecording];
-    }
-#endif
+    [self startRecording];
     
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
@@ -260,23 +256,11 @@
     if (self.suctionNode.orangeHealth <= 0 || self.suctionNode.blueHealth <= 0) {
         self.gameOverLabelNode.text = @"Game Over!";
         self.paused = YES;
-        
-#ifdef KAMCORD_ENABLED
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [Kamcord stopRecording];
-            [Kamcord showView];
-        });
-#endif
+        [self stopRecording];
     } else if (self.reachedGoal) {
         self.gameOverLabelNode.text = @"You Win!";
         self.paused = YES;
-        
-#ifdef KAMCORD_ENABLED
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [Kamcord stopRecording];
-            [Kamcord showView];
-        });
-#endif
+        [self stopRecording];
     }
 }
 
@@ -320,6 +304,22 @@
     labelNode.horizontalAlignmentMode = SKLabelHorizontalAlignmentModeCenter;
     labelNode.text = text;
     return labelNode;
+}
+
+#pragma mark - Kamcord 
+- (void)startRecording {
+#ifdef KAMCORD_ENABLED
+    [Kamcord startRecording];
+#endif
+}
+
+- (void)stopRecording {
+#ifdef KAMCORD_ENABLED
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [Kamcord stopRecording];
+        [Kamcord showView];
+    });
+#endif
 }
 
 @end

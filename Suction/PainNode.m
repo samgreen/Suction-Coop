@@ -28,9 +28,6 @@
         
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Pain";
-        self.shapeNode.fillColor = [UIColor redColor];
-        self.shapeNode.alpha = 0.3f;
-        self.shapeNode.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
         
         self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
         self.shapeNode.physicsBody.dynamic = NO;
@@ -43,6 +40,7 @@
         SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"FireParticle"];
         emitter.particlePosition = CGPointZero;
         emitter.particlePositionRange = CGVectorMake(size.width, size.height);
+        emitter.particleBirthRate = size.height * size.width * 0.05f;
         [self addChild:emitter];
     }
     return self;
