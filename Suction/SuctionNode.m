@@ -39,7 +39,7 @@
         self.redNode.physicsBody.categoryBitMask = SuctionColliderTypeRedSuction;
         self.redNode.name = @"RedSuction";
         [self addChild:self.redNode];
-        [self toggleRedSuction];
+//        [self toggleRedSuction];
     }
     return self;
 }

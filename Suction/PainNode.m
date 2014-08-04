@@ -25,7 +25,7 @@
     if (self) {
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Pain";
-        self.shapeNode.fillColor = [UIColor redColor];
+        self.shapeNode.fillColor = [UIColor orangeColor];
         self.shapeNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height)].CGPath;
         
         self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];

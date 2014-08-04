@@ -38,7 +38,7 @@
         
         [self addChild:self.shapeNode];
         
-        SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"MagicParticle"];
+        SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"GoalParticle"];
         [self addChild:emitter];
     }
     return self;
