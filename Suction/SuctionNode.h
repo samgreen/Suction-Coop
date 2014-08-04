@@ -16,6 +16,9 @@
 @property (nonatomic, readonly) NSInteger blueHealth;
 @property (nonatomic, readonly) NSInteger redHealth;
 
+@property (nonatomic, readonly) BOOL blueEnabled;
+@property (nonatomic, readonly) BOOL redEnabled;
+
 - (void)toggleRedSuction;
 - (void)toggleBlueSuction;
 

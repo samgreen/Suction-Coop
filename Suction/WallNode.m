@@ -24,10 +24,10 @@
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Wall";
         self.shapeNode.fillColor = [UIColor grayColor];
-        self.shapeNode.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height) cornerRadius:3.f].CGPath;
+        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        self.shapeNode.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:3.f].CGPath;
         
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
-        self.shapeNode.physicsBody.dynamic = NO;
+        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:rect];
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypeWall;
         self.shapeNode.physicsBody.collisionBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;
         
