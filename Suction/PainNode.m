@@ -7,6 +7,7 @@
 //
 
 #import "PainNode.h"
+#import "SKNode+ArchiveHelpers.h"
 
 @interface PainNode ()
 
@@ -28,6 +29,7 @@
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Pain";
         self.shapeNode.fillColor = [UIColor redColor];
+        self.shapeNode.alpha = 0.3f;
         self.shapeNode.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
         
         self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
@@ -37,6 +39,11 @@
         self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
         [self addChild:self.shapeNode];
+        
+        SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"FireParticle"];
+        emitter.particlePosition = CGPointZero;
+        emitter.particlePositionRange = CGVectorMake(size.width, size.height);
+        [self addChild:emitter];
     }
     return self;
 }

@@ -61,6 +61,7 @@
 		51A9F7A9198F3931003CE440 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A9F7A7198F381B003CE440 /* AdSupport.framework */; };
 		51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADC9CA198E37CA00217F68 /* MenuScene.m */; };
 		51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-2.sks */; };
+		51AFF003198F69600098D89C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF002198F69600098D89C /* FireParticle.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		51ADC9C9198E37CA00217F68 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		51ADC9CA198E37CA00217F68 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		51ADC9CC198E3EE600217F68 /* Level-2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-2.sks"; sourceTree = "<group>"; };
+		51AFF002198F69600098D89C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 				51A9F737198E66DA003CE440 /* spark.png */,
 				51A9F73A198E6747003CE440 /* FirefliesParticle.sks */,
 				51A9F73C198E6757003CE440 /* SparkParticle.sks */,
+				51AFF002198F69600098D89C /* FireParticle.sks */,
 			);
 			name = "Particle Effects";
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				51A9F731198E62B6003CE440 /* bokeh.png in Resources */,
 				51A9F74A198F31C0003CE440 /* Kamcord.bundle in Resources */,
 				51A9F73B198E6747003CE440 /* FirefliesParticle.sks in Resources */,
+				51AFF003198F69600098D89C /* FireParticle.sks in Resources */,
 				51A9F738198E66DA003CE440 /* MagicParticle.sks in Resources */,
 				51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */,
 				51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */,
