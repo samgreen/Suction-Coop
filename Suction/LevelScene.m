@@ -13,6 +13,8 @@
 #import "PainNode.h"
 #import "SKNode+ArchiveHelpers.h"
 
+#import <Kamcord/Kamcord.h>
+
 @interface LevelScene () <SKPhysicsContactDelegate>
 
 @property (nonatomic, strong) SKLabelNode *redHealthLabelNode;
@@ -209,6 +211,10 @@
         return;
     }
     
+    if (![Kamcord isRecording]) {
+        [Kamcord startRecording];
+    }
+    
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
@@ -245,10 +251,17 @@
     if (self.suctionNode.redHealth <= 0 || self.suctionNode.blueHealth <= 0) {
         self.gameOverLabelNode.text = @"Game Over!";
         self.paused = YES;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [Kamcord stopRecording];
+            [Kamcord showView];
+        });
     } else if (self.reachedGoal) {
         self.gameOverLabelNode.text = @"You Win!";
         self.paused = YES;
-    }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [Kamcord stopRecording];
+            [Kamcord showView];
+        });    }
 }
 
 #pragma mark - Physics Delegate
@@ -268,7 +281,6 @@
         [self updateUI];
     } else if ([nodeA.name isEqualToString:@"Goal"]) {
         self.reachedGoal = YES;
-        self.paused = YES;
         [self updateUI];
     } else {
         NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);

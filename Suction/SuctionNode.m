@@ -54,14 +54,9 @@
     node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:16.f];
     node.physicsBody.allowsRotation = NO;
     node.physicsBody.usesPreciseCollisionDetection = YES;
-    node.physicsBody.categoryBitMask = SuctionColliderTypeWall;
     node.physicsBody.collisionBitMask = SuctionColliderTypeWall;
     
     return node;
-}
-
-- (void)createJoint {
-    
 }
 
 #pragma mark - Health 

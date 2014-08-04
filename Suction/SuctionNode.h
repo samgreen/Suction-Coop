@@ -16,8 +16,6 @@
 @property (nonatomic, readonly) NSInteger blueHealth;
 @property (nonatomic, readonly) NSInteger redHealth;
 
-- (void)createJoint;
-
 - (void)toggleRedSuction;
 - (void)toggleBlueSuction;
 
