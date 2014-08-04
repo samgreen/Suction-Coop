@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>41FD3B47-15AD-426F-8793-34A3303813B3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Suction</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EE286254-6F7B-4302-8C22-3F85FB59B704</key>
+		<string>ssh://github.com/samgreen/Suction-Coop.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Suction.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EE286254-6F7B-4302-8C22-3F85FB59B704</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/samgreen/Suction-Coop.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EE286254-6F7B-4302-8C22-3F85FB59B704</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EE286254-6F7B-4302-8C22-3F85FB59B704</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Suction</string>
+		</dict>
+	</array>
+</dict>
+</plist>
