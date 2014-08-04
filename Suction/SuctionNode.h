@@ -10,6 +10,8 @@
 
 @interface SuctionNode : SKNode
 
+@property (nonatomic, weak) SKPhysicsWorld *physicsWorld;
+
 @property (nonatomic, readonly) SKShapeNode *blueNode;
 @property (nonatomic, readonly) SKShapeNode *redNode;
 

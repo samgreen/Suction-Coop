@@ -13,6 +13,9 @@
 @property (nonatomic, strong) SKShapeNode *blueNode;
 @property (nonatomic, strong) SKShapeNode *redNode;
 
+@property (nonatomic, strong) SKPhysicsJointPin *bluePinJoint;
+@property (nonatomic, strong) SKPhysicsJointPin *redPinJoint;
+
 @property (nonatomic) NSInteger redHealth;
 @property (nonatomic) NSInteger blueHealth;
 
@@ -32,14 +35,12 @@
         self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
         self.blueNode.name = @"BlueSuction";
         [self addChild:self.blueNode];
-        [self toggleBlueSuction];
         
         self.redHealth = 3;
         self.redNode = [SuctionNode newSuctionNode:[SKColor redColor] atPosition:CGPointMake(-64.f, 0)];
         self.redNode.physicsBody.categoryBitMask = SuctionColliderTypeRedSuction;
         self.redNode.name = @"RedSuction";
         [self addChild:self.redNode];
-        [self toggleRedSuction];
     }
     return self;
 }
@@ -70,15 +71,37 @@
 
 #pragma mark - Physics
 - (void)toggleRedSuction {
-    self.redNode.physicsBody.dynamic = !self.redNode.physicsBody.dynamic;
-    self.redNode.alpha = self.redNode.physicsBody.dynamic ? 1.f : 0.3f;
-    self.redNode.strokeColor = self.redNode.physicsBody.dynamic ? [SKColor clearColor] : [SKColor whiteColor];
+    if (self.redPinJoint) {
+        [self.physicsWorld removeJoint:self.redPinJoint];
+        self.redPinJoint = nil;
+    } else {
+        CGPoint redWorldPos = [self.parent convertPoint:self.redNode.position fromNode:self];
+        self.redPinJoint = [SKPhysicsJointPin jointWithBodyA:self.redNode.physicsBody
+                                                       bodyB:self.parent.physicsBody
+                                                      anchor:redWorldPos];
+        [self.physicsWorld addJoint:self.redPinJoint];
+    }
+    
+    BOOL jointDisabled = (self.redPinJoint == nil);
+    self.redNode.alpha = jointDisabled ? 1.f : 0.3f;
+    self.redNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
 - (void)toggleBlueSuction {
-    self.blueNode.physicsBody.dynamic = !self.blueNode.physicsBody.dynamic;
-    self.blueNode.alpha = self.blueNode.physicsBody.dynamic ? 1.f : 0.3f;
-    self.blueNode.strokeColor = self.blueNode.physicsBody.dynamic ? [SKColor clearColor] : [SKColor whiteColor];
+    if (self.bluePinJoint) {
+        [self.physicsWorld removeJoint:self.bluePinJoint];
+        self.bluePinJoint = nil;
+    } else {
+        CGPoint blueWorldPos = [self.parent convertPoint:self.blueNode.position fromNode:self];
+        self.bluePinJoint = [SKPhysicsJointPin jointWithBodyA:self.blueNode.physicsBody
+                                                        bodyB:self.parent.physicsBody
+                                                       anchor:blueWorldPos];
+        [self.physicsWorld addJoint:self.bluePinJoint];
+    }
+    
+    BOOL jointDisabled = (self.bluePinJoint == nil);
+    self.blueNode.alpha = jointDisabled ? 1.f : 0.3f;
+    self.blueNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
 - (void)accelerateRedNode {
@@ -90,8 +113,6 @@
 }
 
 - (void)accelerateNode:(SKNode *)node {
-    if (!node.physicsBody.dynamic) return;
-    
     [node.physicsBody applyImpulse:CGVectorMake(25, 0)];
 }
 

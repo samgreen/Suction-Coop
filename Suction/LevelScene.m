@@ -177,9 +177,12 @@
     // 4. Load Suction
     SKNode *suction = (SuctionNode *)[scene childNodeWithName:@"Suction"];
     self.suctionNode = [SuctionNode node];
+    self.suctionNode.physicsWorld = self.physicsWorld;
     self.suctionNode.position = suction.position;
     self.suctionNode.zRotation = suction.zRotation;
     [self addChild:self.suctionNode];
+    [self.suctionNode toggleBlueSuction];
+    [self.suctionNode toggleRedSuction];
     
     // 5. Create joint
     //[self initRopeJoint];

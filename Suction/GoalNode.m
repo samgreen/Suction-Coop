@@ -31,7 +31,7 @@
         self.shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(-64.f, -64.f, 128.f, 128.f)].CGPath;
         
         self.shapeNode.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:64.f];
-        self.shapeNode.physicsBody.dynamic = NO;
+        self.shapeNode.physicsBody.affectedByGravity = NO;
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypeGoal;
         self.shapeNode.physicsBody.collisionBitMask = 0; // No collide
         self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;
