@@ -123,7 +123,7 @@
     [self.physicsWorld addJoint:blueJoint];
 }
 
-- (void)initLRopeJoint {
+- (void)initRopeJoint {
     CGPoint redCenter = CGPointMake(self.suctionNode.redNode.position.x + 64.f, self.suctionNode.redNode.position.y);
     CGPoint blueCenter = CGPointMake(self.suctionNode.blueNode.position.x - 64.f, self.suctionNode.blueNode.position.y);
     CGPoint redPos = [self convertPoint:redCenter fromNode:self.suctionNode.redNode];
@@ -183,8 +183,8 @@
     [self addChild:self.suctionNode];
     
     // 5. Create joint
-//    [self initLRopeJoint];
-    [self initFixedJoint];
+    [self initRopeJoint];
+//    [self initFixedJoint];
     
     // 6. Reload UI
     [self initUI];

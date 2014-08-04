@@ -1,4 +1,7 @@
 # TODO
+ * Add Lighting
+ * Unbounded levels
+   * Remove edge loops
 
 # Questions
  * Stick or rope? Both?
@@ -6,7 +9,8 @@
  * Offer 2 directions of force?
  * angular impulse?
  * Suction BG dynamic?
- * Unbounded levels?
 
 # Ideas
  * Fire / water theme
+
+ http://bit.ly/1ol7aHD
