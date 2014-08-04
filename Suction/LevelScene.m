@@ -183,8 +183,8 @@
     [self addChild:self.suctionNode];
     
     // 5. Create joint
-    [self initRopeJoint];
-//    [self initFixedJoint];
+    //[self initRopeJoint];
+    [self initFixedJoint];
     
     // 6. Reload UI
     [self initUI];
