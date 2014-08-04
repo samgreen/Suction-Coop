@@ -36,6 +36,8 @@
 		51A9F739198E66DA003CE440 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A9F737198E66DA003CE440 /* spark.png */; };
 		51A9F73B198E6747003CE440 /* FirefliesParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51A9F73A198E6747003CE440 /* FirefliesParticle.sks */; };
 		51A9F73D198E6757003CE440 /* SparkParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51A9F73C198E6757003CE440 /* SparkParticle.sks */; };
+		51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51A9F73E198E67CA003CE440 /* Level-3.sks */; };
+		51A9F741198E6865003CE440 /* Level-4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51A9F740198E6865003CE440 /* Level-4.sks */; };
 		51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADC9CA198E37CA00217F68 /* MenuScene.m */; };
 		51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-2.sks */; };
 /* End PBXBuildFile section */
@@ -91,6 +93,8 @@
 		51A9F737198E66DA003CE440 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		51A9F73A198E6747003CE440 /* FirefliesParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FirefliesParticle.sks; sourceTree = "<group>"; };
 		51A9F73C198E6757003CE440 /* SparkParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SparkParticle.sks; sourceTree = "<group>"; };
+		51A9F73E198E67CA003CE440 /* Level-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-3.sks"; sourceTree = "<group>"; };
+		51A9F740198E6865003CE440 /* Level-4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-4.sks"; sourceTree = "<group>"; };
 		51ADC9C9198E37CA00217F68 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		51ADC9CA198E37CA00217F68 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		51ADC9CC198E3EE600217F68 /* Level-2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-2.sks"; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 		51216F0C198E238F00490A0C /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				51A9F740198E6865003CE440 /* Level-4.sks */,
+				51A9F73E198E67CA003CE440 /* Level-3.sks */,
 				51ADC9CC198E3EE600217F68 /* Level-2.sks */,
 				51216F0A198E231500490A0C /* Level-1.sks */,
 			);
@@ -345,7 +351,9 @@
 				51A4314E198B7084007E67C3 /* Main_iPhone.storyboard in Resources */,
 				51A9F73B198E6747003CE440 /* FirefliesParticle.sks in Resources */,
 				51A9F738198E66DA003CE440 /* MagicParticle.sks in Resources */,
+				51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */,
 				51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */,
+				51A9F741198E6865003CE440 /* Level-4.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

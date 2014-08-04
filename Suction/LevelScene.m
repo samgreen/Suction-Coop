@@ -54,30 +54,37 @@
 #pragma mark - Init Methods
 - (void)initUI {
     SKLabelNode *redSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor redColor]];
-    redSuctionLabelNode.position = CGPointMake(80, 192);
+    redSuctionLabelNode.zRotation = -M_PI_2;
+    redSuctionLabelNode.position = CGPointMake(60, 192);
     [self addChild:redSuctionLabelNode];
     
     SKLabelNode *redForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor redColor]];
-    redForceLabelNode.position = CGPointMake(80, 576);
+    redForceLabelNode.zRotation = -M_PI_2;
+    redForceLabelNode.position = CGPointMake(60, 576);
     [self addChild:redForceLabelNode];
     
     SKLabelNode *blueSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor blueColor]];
-    blueSuctionLabelNode.position = CGPointMake(944, 192);
+    blueSuctionLabelNode.position = CGPointMake(964, 192);
+    blueSuctionLabelNode.zRotation = M_PI_2;
     [self addChild:blueSuctionLabelNode];
     
     SKLabelNode *blueForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor blueColor]];
-    blueForceLabelNode.position = CGPointMake(944, 576);
+    blueForceLabelNode.zRotation = M_PI_2;
+    blueForceLabelNode.position = CGPointMake(964, 576);
     [self addChild:blueForceLabelNode];
     
     self.blueHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor blueColor]];
+    self.blueHealthLabelNode.zRotation = 0;
     self.blueHealthLabelNode.position = CGPointMake(944, 10);
     [self addChild:self.blueHealthLabelNode];
     
     self.redHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor redColor]];
+    self.redHealthLabelNode.zRotation = 0;
     self.redHealthLabelNode.position = CGPointMake(80, 10);
     [self addChild:self.redHealthLabelNode];
     
     self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
+    self.gameOverLabelNode.zRotation = 0;
     self.gameOverLabelNode.fontSize = 48.f;
     self.gameOverLabelNode.position = CGPointMake(CGRectGetWidth(self.frame) / 2,
                                                   CGRectGetHeight(self.frame) / 2);
