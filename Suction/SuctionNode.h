@@ -13,21 +13,18 @@
 @property (nonatomic, weak) SKPhysicsWorld *physicsWorld;
 
 @property (nonatomic, readonly) SKShapeNode *blueNode;
-@property (nonatomic, readonly) SKShapeNode *redNode;
+@property (nonatomic, readonly) SKShapeNode *orangeNode;
 
 @property (nonatomic, readonly) NSInteger blueHealth;
-@property (nonatomic, readonly) NSInteger redHealth;
+@property (nonatomic, readonly) NSInteger orangeHealth;
 
-@property (nonatomic, readonly) BOOL blueEnabled;
-@property (nonatomic, readonly) BOOL redEnabled;
-
-- (void)toggleRedSuction;
+- (void)toggleOrangeSuction;
 - (void)toggleBlueSuction;
 
-- (void)accelerateRedNode;
+- (void)accelerateOrangeNode;
 - (void)accelerateBlueNode;
 
-- (void)hurtRedNode;
+- (void)hurtOrangeNode;
 - (void)hurtBlueNode;
 
 @end

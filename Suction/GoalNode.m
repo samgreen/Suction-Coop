@@ -34,7 +34,7 @@
         self.shapeNode.physicsBody.affectedByGravity = NO;
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypeGoal;
         self.shapeNode.physicsBody.collisionBitMask = 0; // No collide
-        self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;
+        self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
         [self addChild:self.shapeNode];
         

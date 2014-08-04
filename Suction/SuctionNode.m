@@ -11,12 +11,12 @@
 @interface SuctionNode ()
 
 @property (nonatomic, strong) SKShapeNode *blueNode;
-@property (nonatomic, strong) SKShapeNode *redNode;
+@property (nonatomic, strong) SKShapeNode *orangeNode;
 
 @property (nonatomic, strong) SKPhysicsJointPin *bluePinJoint;
-@property (nonatomic, strong) SKPhysicsJointPin *redPinJoint;
+@property (nonatomic, strong) SKPhysicsJointPin *orangePinJoint;
 
-@property (nonatomic) NSInteger redHealth;
+@property (nonatomic) NSInteger orangeHealth;
 @property (nonatomic) NSInteger blueHealth;
 
 @end
@@ -36,11 +36,11 @@
         self.blueNode.name = @"BlueSuction";
         [self addChild:self.blueNode];
         
-        self.redHealth = 3;
-        self.redNode = [SuctionNode newSuctionNode:[SKColor redColor] atPosition:CGPointMake(-64.f, 0)];
-        self.redNode.physicsBody.categoryBitMask = SuctionColliderTypeRedSuction;
-        self.redNode.name = @"RedSuction";
-        [self addChild:self.redNode];
+        self.orangeHealth = 3;
+        self.orangeNode = [SuctionNode newSuctionNode:[SKColor orangeColor] atPosition:CGPointMake(-64.f, 0)];
+        self.orangeNode.physicsBody.categoryBitMask = SuctionColliderTypeOrangeSuction;
+        self.orangeNode.name = @"OrangeSuction";
+        [self addChild:self.orangeNode];
     }
     return self;
 }
@@ -61,8 +61,8 @@
 }
 
 #pragma mark - Health 
-- (void)hurtRedNode {
-    self.redHealth--;
+- (void)hurtOrangeNode {
+    self.orangeHealth--;
 }
 
 - (void)hurtBlueNode {
@@ -70,21 +70,21 @@
 }
 
 #pragma mark - Physics
-- (void)toggleRedSuction {
-    if (self.redPinJoint) {
-        [self.physicsWorld removeJoint:self.redPinJoint];
-        self.redPinJoint = nil;
+- (void)toggleOrangeSuction {
+    if (self.orangePinJoint) {
+        [self.physicsWorld removeJoint:self.orangePinJoint];
+        self.orangePinJoint = nil;
     } else {
-        CGPoint redWorldPos = [self.parent convertPoint:self.redNode.position fromNode:self];
-        self.redPinJoint = [SKPhysicsJointPin jointWithBodyA:self.redNode.physicsBody
+        CGPoint redWorldPos = [self.parent convertPoint:self.orangeNode.position fromNode:self];
+        self.orangePinJoint = [SKPhysicsJointPin jointWithBodyA:self.orangeNode.physicsBody
                                                        bodyB:self.parent.physicsBody
                                                       anchor:redWorldPos];
-        [self.physicsWorld addJoint:self.redPinJoint];
+        [self.physicsWorld addJoint:self.orangePinJoint];
     }
     
-    BOOL jointDisabled = (self.redPinJoint == nil);
-    self.redNode.alpha = jointDisabled ? 1.f : 0.3f;
-    self.redNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
+    BOOL jointDisabled = (self.orangePinJoint == nil);
+    self.orangeNode.alpha = jointDisabled ? 1.f : 0.3f;
+    self.orangeNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
 - (void)toggleBlueSuction {
@@ -104,8 +104,8 @@
     self.blueNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
 }
 
-- (void)accelerateRedNode {
-    [self accelerateNode:self.redNode];
+- (void)accelerateOrangeNode {
+    [self accelerateNode:self.orangeNode];
 }
 
 - (void)accelerateBlueNode {

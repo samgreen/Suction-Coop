@@ -17,7 +17,7 @@
 
 @interface LevelScene () <SKPhysicsContactDelegate>
 
-@property (nonatomic, strong) SKLabelNode *redHealthLabelNode;
+@property (nonatomic, strong) SKLabelNode *orangeHealthLabelNode;
 @property (nonatomic, strong) SKLabelNode *blueHealthLabelNode;
 @property (nonatomic, strong) SKLabelNode *gameOverLabelNode;
 
@@ -35,6 +35,8 @@
 
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
+        self.name = @"Scene";
+        
         self.gameLayerNode = [SKNode node];
         [self addChild:self.gameLayerNode];
         
@@ -46,23 +48,26 @@
         self.physicsWorld.contactDelegate = self;
         
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
-        self.physicsBody.collisionBitMask = SuctionColliderTypeBlueSuction | SuctionColliderTypeRedSuction;
-        self.physicsBody.categoryBitMask = SuctionColliderTypeWall;
+        self.physicsBody.categoryBitMask = SuctionColliderTypeEdgeWall;
+        self.physicsBody.collisionBitMask = SuctionColliderTypeBlueSuction | SuctionColliderTypeOrangeSuction;
+        self.physicsBody.contactTestBitMask = self.physicsBody.collisionBitMask;
+        
+        
     }
     return self;
 }
 
 #pragma mark - Init Methods
 - (void)initUI {
-    SKLabelNode *redSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor redColor]];
-    redSuctionLabelNode.zRotation = -M_PI_2;
-    redSuctionLabelNode.position = CGPointMake(60, 192);
-    [self addChild:redSuctionLabelNode];
+    SKLabelNode *orangeSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor orangeColor]];
+    orangeSuctionLabelNode.zRotation = -M_PI_2;
+    orangeSuctionLabelNode.position = CGPointMake(60, 192);
+    [self addChild:orangeSuctionLabelNode];
     
-    SKLabelNode *redForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor redColor]];
-    redForceLabelNode.zRotation = -M_PI_2;
-    redForceLabelNode.position = CGPointMake(60, 576);
-    [self addChild:redForceLabelNode];
+    SKLabelNode *orangeForceLabelNode = [LevelScene newLabelNode:@"Apply Force" withFontColor:[SKColor orangeColor]];
+    orangeForceLabelNode.zRotation = -M_PI_2;
+    orangeForceLabelNode.position = CGPointMake(60, 576);
+    [self addChild:orangeForceLabelNode];
     
     SKLabelNode *blueSuctionLabelNode = [LevelScene newLabelNode:@"Suction" withFontColor:[SKColor blueColor]];
     blueSuctionLabelNode.position = CGPointMake(964, 192);
@@ -79,10 +84,10 @@
     self.blueHealthLabelNode.position = CGPointMake(944, 10);
     [self addChild:self.blueHealthLabelNode];
     
-    self.redHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor redColor]];
-    self.redHealthLabelNode.zRotation = 0;
-    self.redHealthLabelNode.position = CGPointMake(80, 10);
-    [self addChild:self.redHealthLabelNode];
+    self.orangeHealthLabelNode = [LevelScene newLabelNode:@"Health: 3" withFontColor:[SKColor orangeColor]];
+    self.orangeHealthLabelNode.zRotation = 0;
+    self.orangeHealthLabelNode.position = CGPointMake(80, 10);
+    [self addChild:self.orangeHealthLabelNode];
     
     self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
     self.gameOverLabelNode.zRotation = 0;
@@ -108,13 +113,13 @@
     [self.suctionNode addChild:boxNode];
     
     // 2. Create a fixed joint between the blue node and the box
-    CGPoint redWordPosition = [self convertPoint:self.suctionNode.redNode.position fromNode:self.suctionNode];
-    SKPhysicsJointPin *redJoint = [SKPhysicsJointPin jointWithBodyA:boxNode.physicsBody
-                                                              bodyB:self.suctionNode.redNode.physicsBody
-                                                             anchor:redWordPosition];
-    [self.physicsWorld addJoint:redJoint];
+    CGPoint orangeWorldPosition = [self convertPoint:self.suctionNode.orangeNode.position fromNode:self.suctionNode];
+    SKPhysicsJointPin *orangeJoint = [SKPhysicsJointPin jointWithBodyA:boxNode.physicsBody
+                                                              bodyB:self.suctionNode.orangeNode.physicsBody
+                                                             anchor:orangeWorldPosition];
+    [self.physicsWorld addJoint:orangeJoint];
     
-    // 3. Create a fixed joint between the red node and the box
+    // 3. Create a fixed joint between the orange node and the box
     CGPoint blueWordPosition = [self convertPoint:self.suctionNode.blueNode.position fromNode:self.suctionNode];
     SKPhysicsJointPin *blueJoint = [SKPhysicsJointPin jointWithBodyA:boxNode.physicsBody
                                                                bodyB:self.suctionNode.blueNode.physicsBody
@@ -123,14 +128,14 @@
 }
 
 - (void)initRopeJoint {
-    CGPoint redCenter = CGPointMake(self.suctionNode.redNode.position.x + 64.f, self.suctionNode.redNode.position.y);
+    CGPoint orangeCenter = CGPointMake(self.suctionNode.orangeNode.position.x + 64.f, self.suctionNode.orangeNode.position.y);
     CGPoint blueCenter = CGPointMake(self.suctionNode.blueNode.position.x - 64.f, self.suctionNode.blueNode.position.y);
-    CGPoint redPos = [self convertPoint:redCenter fromNode:self.suctionNode.redNode];
-    CGPoint bluePos = [self convertPoint:blueCenter fromNode:self.suctionNode.blueNode];
-    SKPhysicsJointLimit *limitJoint = [SKPhysicsJointLimit jointWithBodyA:self.suctionNode.redNode.physicsBody
+    CGPoint orangeWorldPos = [self convertPoint:orangeCenter fromNode:self.suctionNode.orangeNode];
+    CGPoint blueWorldPos = [self convertPoint:blueCenter fromNode:self.suctionNode.blueNode];
+    SKPhysicsJointLimit *limitJoint = [SKPhysicsJointLimit jointWithBodyA:self.suctionNode.orangeNode.physicsBody
                                                                     bodyB:self.suctionNode.blueNode.physicsBody
-                                                                  anchorA:redPos
-                                                                  anchorB:bluePos];
+                                                                  anchorA:orangeWorldPos
+                                                                  anchorB:blueWorldPos];
     [self.physicsWorld addJoint:limitJoint];
 }
 
@@ -182,7 +187,7 @@
     self.suctionNode.zRotation = suction.zRotation;
     [self addChild:self.suctionNode];
     [self.suctionNode toggleBlueSuction];
-    [self.suctionNode toggleRedSuction];
+    [self.suctionNode toggleOrangeSuction];
     
     // 5. Create joint
     //[self initRopeJoint];
@@ -222,15 +227,15 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     
-    static const CGFloat kRedMaxTouchX = 120.f;
+    static const CGFloat kOrangeMaxTouchX = 120.f;
     static const CGFloat kBlueMinTouchX = 904.f;
     static const CGFloat kMidTouchY = 384.f;
     
-    if (location.x < kRedMaxTouchX) {
+    if (location.x < kOrangeMaxTouchX) {
         if (location.y < kMidTouchY) {
-            [self.suctionNode toggleRedSuction];
+            [self.suctionNode toggleOrangeSuction];
         } else {
-            [self.suctionNode accelerateRedNode];
+            [self.suctionNode accelerateOrangeNode];
         }
     } else if (location.x > kBlueMinTouchX) {
         if (location.y < kMidTouchY) {
@@ -249,10 +254,10 @@
 }
 
 - (void)updateUI {
-    self.redHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.redHealth];
+    self.orangeHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.orangeHealth];
     self.blueHealthLabelNode.text = [NSString stringWithFormat:@"Health: %lu", (unsigned long)self.suctionNode.blueHealth];
     
-    if (self.suctionNode.redHealth <= 0 || self.suctionNode.blueHealth <= 0) {
+    if (self.suctionNode.orangeHealth <= 0 || self.suctionNode.blueHealth <= 0) {
         self.gameOverLabelNode.text = @"Game Over!";
         self.paused = YES;
         
@@ -279,20 +284,24 @@
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     SKNode *nodeA = contact.bodyA.node;
     SKNode *nodeB = contact.bodyB.node;
+    NSString *nameA = nodeA.name;
+    NSString *nameB = nodeB.name;
     
     // Did we hit a pain node?
-    if ([nodeA.name isEqualToString:@"Pain"]) {
+    if ([nameA isEqualToString:@"Pain"] || [nameB isEqualToString:@"Pain"]) {
         
         // Determine what color node hit the pain node
-        if ([nodeB.name isEqualToString:@"BlueSuction"]) {
+        if ([nameA isEqualToString:@"BlueSuction"] || [nameB isEqualToString:@"BlueSuction"]) {
             [self.suctionNode hurtBlueNode];
-        } else if ([nodeB.name isEqualToString:@"RedSuction"]) {
-            [self.suctionNode hurtRedNode];
+        } else if ([nameA isEqualToString:@"OrangeSuction"] || [nameB isEqualToString:@"OrangeSuction"]) {
+            [self.suctionNode hurtOrangeNode];
         }
         [self updateUI];
-    } else if ([nodeA.name isEqualToString:@"Goal"]) {
+    } else if ([nameA isEqualToString:@"Goal"] || [nameB isEqualToString:@"Goal"]) {
         self.reachedGoal = YES;
         [self updateUI];
+    } else if ([nameA isEqualToString:@"Scene"] || [nameB isEqualToString:@"Scene"]) {
+        NSLog(@"Touched wall.");
     } else {
         NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);
     }

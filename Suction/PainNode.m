@@ -23,16 +23,18 @@
 - (instancetype)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
+        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Pain";
-        self.shapeNode.fillColor = [UIColor orangeColor];
-        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        self.shapeNode.fillColor = [UIColor redColor];
         self.shapeNode.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
         
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:rect];
+        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
+        self.shapeNode.physicsBody.dynamic = NO;
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypePain;
         self.shapeNode.physicsBody.collisionBitMask = 0; // No collide
-        self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;
+        self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
         [self addChild:self.shapeNode];
     }

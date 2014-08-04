@@ -21,15 +21,17 @@
 - (instancetype)initWithSize:(CGSize)size {
     self = [super init];
     if (self) {
+        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Wall";
         self.shapeNode.fillColor = [UIColor grayColor];
-        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
         self.shapeNode.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:3.f].CGPath;
         
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:rect];
+        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
+        self.shapeNode.physicsBody.dynamic = NO;
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypeWall;
-        self.shapeNode.physicsBody.collisionBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;
+        self.shapeNode.physicsBody.collisionBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
         [self addChild:self.shapeNode];
     }
