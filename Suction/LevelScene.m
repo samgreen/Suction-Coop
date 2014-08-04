@@ -42,10 +42,8 @@
         self.scaleMode = SKSceneScaleModeAspectFill;
         
         self.gameLayerNode = [SKNode node];
+        self.gameLayerNode.position = CGPointMake(size.width / 2.f, size.height / 2.f);
         [self addChild:self.gameLayerNode];
-        
-        self.interfaceLayerNode = [SKNode node];
-        [self addChild:self.interfaceLayerNode];
         
         self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
         
@@ -61,44 +59,47 @@
 
 #pragma mark - Init Methods
 - (void)initUI {
+    self.interfaceLayerNode = [SKNode node];
+    [self addChild:self.interfaceLayerNode];
+    
     SKLabelNode *orangeSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor orangeColor]];
     orangeSuctionLabelNode.zRotation = -M_PI_2;
     orangeSuctionLabelNode.position = CGPointMake(20, 192);
-    [self addChild:orangeSuctionLabelNode];
+    [self.interfaceLayerNode addChild:orangeSuctionLabelNode];
     
     SKLabelNode *orangeForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor orangeColor]];
     orangeForceLabelNode.zRotation = -M_PI_2;
     orangeForceLabelNode.position = CGPointMake(20, 576);
-    [self addChild:orangeForceLabelNode];
+    [self.interfaceLayerNode addChild:orangeForceLabelNode];
     
     SKLabelNode *blueSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor blueColor]];
     blueSuctionLabelNode.position = CGPointMake(1004, 192);
     blueSuctionLabelNode.zRotation = M_PI_2;
-    [self addChild:blueSuctionLabelNode];
+    [self.interfaceLayerNode addChild:blueSuctionLabelNode];
     
     SKLabelNode *blueForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor blueColor]];
     blueForceLabelNode.zRotation = M_PI_2;
     blueForceLabelNode.position = CGPointMake(1004, 576);
-    [self addChild:blueForceLabelNode];
+    [self.interfaceLayerNode addChild:blueForceLabelNode];
     
     self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
     self.gameOverLabelNode.fontName = @"Superclarendon-BlackItalic";
     self.gameOverLabelNode.zRotation = M_PI_4 * 0.3f;
     self.gameOverLabelNode.fontSize = 64.f;
     self.gameOverLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-    [self addChild:self.gameOverLabelNode];
+    [self.interfaceLayerNode addChild:self.gameOverLabelNode];
     
     self.orangeHealthNode = [HealthNode node];
     self.orangeHealthNode.color = [SKColor orangeColor];
     self.orangeHealthNode.position = CGPointMake(50, CGRectGetMidY(self.frame) + 48.f);
     self.orangeHealthNode.zRotation = -M_PI_2;
-    [self addChild:self.orangeHealthNode];
+    [self.interfaceLayerNode addChild:self.orangeHealthNode];
     
     self.blueHealthNode = [HealthNode node];
     self.blueHealthNode.color = [SKColor blueColor];
     self.blueHealthNode.position = CGPointMake(974, CGRectGetMidY(self.frame) - 48.f);
     self.blueHealthNode.zRotation = M_PI_2;
-    [self addChild:self.blueHealthNode];
+    [self.interfaceLayerNode addChild:self.blueHealthNode];
 }
 
 - (void)initFixedJoint {
@@ -155,12 +156,6 @@
     // Start with a clean slate
     [self removeAllChildren];
     self.reachedGoal = NO;
-    
-    // Level title
-    SKLabelNode *titleLabelNode = [LevelScene newLabelNode:name withFontColor:[SKColor whiteColor]];
-    titleLabelNode.fontName = @"Superclarendon-Regular";
-    titleLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 40);
-    [self addChild:titleLabelNode];
     
     // Load background
     SKSpriteNode *backgroundNode = [SKSpriteNode spriteNodeWithImageNamed:@"woodbg"];
@@ -223,6 +218,13 @@
     
     // Reload UI
     [self initUI];
+    
+    // Level title
+    SKLabelNode *titleLabelNode = [LevelScene newLabelNode:[name stringByReplacingOccurrencesOfString:@"-" withString:@" "] withFontColor:[SKColor whiteColor]];
+    titleLabelNode.fontSize = 28.f;
+    titleLabelNode.fontName = @"Superclarendon-Regular";
+    titleLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame) - 40);
+    [self.interfaceLayerNode addChild:titleLabelNode];
 }
 
 #pragma mark - Custom Setters
