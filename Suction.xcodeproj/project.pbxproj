@@ -62,6 +62,8 @@
 		51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADC9CA198E37CA00217F68 /* MenuScene.m */; };
 		51ADC9CD198E3EE600217F68 /* Level-2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-2.sks */; };
 		51AFF003198F69600098D89C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF002198F69600098D89C /* FireParticle.sks */; };
+		51AFF005198F71C10098D89C /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF004198F71C10098D89C /* wall.png */; };
+		51AFF007198F72470098D89C /* wall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF006198F72470098D89C /* wall@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		51ADC9CA198E37CA00217F68 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		51ADC9CC198E3EE600217F68 /* Level-2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-2.sks"; sourceTree = "<group>"; };
 		51AFF002198F69600098D89C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
+		51AFF004198F71C10098D89C /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
+		51AFF006198F72470098D89C /* wall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wall@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +293,8 @@
 		51A43141198B7084007E67C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				51AFF006198F72470098D89C /* wall@2x.png */,
+				51AFF004198F71C10098D89C /* wall.png */,
 				51590F4D198F4FA400D17825 /* Main_iPad.storyboard */,
 				51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */,
 				51A9F72D198E627A003CE440 /* Particle Effects */,
@@ -439,6 +445,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51AFF007198F72470098D89C /* wall@2x.png in Resources */,
 				51A9F74B198F31C0003CE440 /* KamcordiPad.storyboardc in Resources */,
 				51A9F730198E62B6003CE440 /* GoalParticle.sks in Resources */,
 				51A9F73D198E6757003CE440 /* SparkParticle.sks in Resources */,
@@ -453,6 +460,7 @@
 				51A9F74A198F31C0003CE440 /* Kamcord.bundle in Resources */,
 				51A9F73B198E6747003CE440 /* FirefliesParticle.sks in Resources */,
 				51AFF003198F69600098D89C /* FireParticle.sks in Resources */,
+				51AFF005198F71C10098D89C /* wall.png in Resources */,
 				51A9F738198E66DA003CE440 /* MagicParticle.sks in Resources */,
 				51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */,
 				51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */,

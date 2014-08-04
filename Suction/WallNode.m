@@ -9,7 +9,7 @@
 #import "WallNode.h"
 
 @interface WallNode ()
-@property (nonatomic, strong) SKShapeNode *shapeNode;
+@property (nonatomic, strong) SKSpriteNode *spriteNode;
 @end
 
 @implementation WallNode
@@ -23,17 +23,26 @@
     if (self) {
         CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
         
-        self.shapeNode = [SKShapeNode node];
-        self.shapeNode.name = @"Wall";
-        self.shapeNode.fillColor = [UIColor grayColor];
-        self.shapeNode.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:3.f].CGPath;
+        self.spriteNode = [SKSpriteNode spriteNodeWithImageNamed:@"wall"];
+        self.spriteNode.name = @"Wall";
+        CGRect unitRect = CGRectMake(0, 0,
+                                     size.width / self.spriteNode.texture.size.width,
+                                     size.height / self.spriteNode.texture.size.height);
+        self.spriteNode.texture = [SKTexture textureWithRect:unitRect inTexture:self.spriteNode.texture];
+        self.spriteNode.size = size;
         
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
-        self.shapeNode.physicsBody.dynamic = NO;
-        self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypeWall;
-        self.shapeNode.physicsBody.collisionBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
+        // Generate normal texture if possible
+//        if ([self.spriteNode respondsToSelector:@selector(normalTexture)]) {
+//            self.spriteNode.normalTexture = [self.spriteNode.texture textureByGeneratingNormalMapWithSmoothness:0.f
+//                                                                                                       contrast:0.f];
+//        }
         
-        [self addChild:self.shapeNode];
+        self.spriteNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rect.size];
+        self.spriteNode.physicsBody.dynamic = NO;
+        self.spriteNode.physicsBody.categoryBitMask = SuctionColliderTypeWall;
+        self.spriteNode.physicsBody.collisionBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
+        
+        [self addChild:self.spriteNode];
     }
     return self;
 }
