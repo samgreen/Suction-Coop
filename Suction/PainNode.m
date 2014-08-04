@@ -26,10 +26,10 @@
         self.shapeNode = [SKShapeNode node];
         self.shapeNode.name = @"Pain";
         self.shapeNode.fillColor = [UIColor orangeColor];
-        self.shapeNode.path = [UIBezierPath bezierPathWithRect:CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height)].CGPath;
+        CGRect rect = CGRectMake(-size.width / 2, -size.height / 2, size.width, size.height);
+        self.shapeNode.path = [UIBezierPath bezierPathWithRect:rect].CGPath;
         
-        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:size];
-        self.shapeNode.physicsBody.dynamic = NO;
+        self.shapeNode.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:rect];
         self.shapeNode.physicsBody.categoryBitMask = SuctionColliderTypePain;
         self.shapeNode.physicsBody.collisionBitMask = 0; // No collide
         self.shapeNode.physicsBody.contactTestBitMask = SuctionColliderTypeRedSuction | SuctionColliderTypeBlueSuction;

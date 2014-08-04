@@ -48,7 +48,6 @@
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
         self.physicsBody.collisionBitMask = SuctionColliderTypeBlueSuction | SuctionColliderTypeRedSuction;
         self.physicsBody.categoryBitMask = SuctionColliderTypeWall;
-        self.physicsBody.dynamic = NO;
     }
     return self;
 }
