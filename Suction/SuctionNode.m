@@ -9,6 +9,7 @@
 #import "SuctionNode.h"
 #import "HealthNode.h"
 #import "SKEffectNode+CoreImageHelpers.h"
+#import "SKNode+ArchiveHelpers.h"
 
 @interface SuctionNode ()
 
@@ -17,6 +18,9 @@
 
 @property (nonatomic, strong) SKShapeNode *blueNode;
 @property (nonatomic, strong) SKShapeNode *orangeNode;
+
+@property (nonatomic, strong) SKEmitterNode *bluePainEmitterNode;
+@property (nonatomic, strong) SKEmitterNode *orangePainEmitterNode;
 
 @property (nonatomic, strong) HealthNode *blueHealthNode;
 @property (nonatomic, strong) HealthNode *orangeHealthNode;
@@ -36,7 +40,7 @@
     if (self) {
         self.blueHealth = 3;
         self.orangeHealth = 3;
-        
+    
 //#if DEBUG
 //        self.blueHealth = 100;
 //        self.orangeHealth = 100;
@@ -44,7 +48,8 @@
         
 #if !(TARGET_IPHONE_SIMULATOR)
         self.blueEffectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur"
-                                                 andInputRadius:5];
+                                                 andInputRadius:0];
+        self.blueEffectNode.shouldEnableEffects = NO;
 #else
         self.blueEffectNode = [SKEffectNode node];
 #endif
@@ -52,7 +57,8 @@
 
 #if !(TARGET_IPHONE_SIMULATOR)
         self.orangeEffectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur"
-                                                   andInputRadius:5];
+                                                   andInputRadius:0];
+        self.orangeEffectNode.shouldEnableEffects = NO;
 #else
         self.orangeEffectNode = [SKEffectNode node];
 #endif
@@ -63,11 +69,32 @@
         self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
         self.blueNode.name = @"BlueSuction";
         [self.blueEffectNode addChild:self.blueNode];
-        
+      
         self.orangeNode = [SuctionNode newSuctionNode:[SKColor orangeColor] atPosition:CGPointMake(-64.f, 0)];
         self.orangeNode.physicsBody.categoryBitMask = SuctionColliderTypeOrangeSuction;
         self.orangeNode.name = @"OrangeSuction";
         [self.orangeEffectNode addChild:self.orangeNode];
+        
+#if !(TARGET_IPHONE_SIMULATOR)
+        self.bluePainEmitterNode = [SKEmitterNode loadArchive:@"FireParticle"];
+        self.bluePainEmitterNode.zPosition = 10;
+        self.bluePainEmitterNode.particleBlendMode = SKBlendModeAdd;
+        self.bluePainEmitterNode.position = CGPointZero;
+        self.bluePainEmitterNode.particleScale = 0.5f;
+        self.bluePainEmitterNode.particlePositionRange = CGVectorMake(24.f, 24.f);
+        self.bluePainEmitterNode.targetNode = self;
+        
+        self.orangePainEmitterNode = [SKEmitterNode loadArchive:@"FireParticle"];
+        self.orangePainEmitterNode.zPosition = 10;
+        self.orangePainEmitterNode.particleBlendMode = SKBlendModeAdd;
+        self.orangePainEmitterNode.position = CGPointZero;
+        self.orangePainEmitterNode.particleScale = 0.5f;
+        self.orangePainEmitterNode.particlePositionRange = CGVectorMake(24.f, 24.f);
+        self.orangePainEmitterNode.targetNode = self;
+#else
+        self.bluePainEmitterNode = [SKEmitterNode node];
+        self.orangePainEmitterNode = [SKEmitterNode node];
+#endif
     }
     return self;
 }
@@ -89,17 +116,33 @@
 
 #pragma mark - Update
 - (void)updateEffects {
-//    [self.blueEffectNode.filter setValue:@(self.blueNode.zRotation) forKey:@"inputAngle"];
-//    [self.orangeEffectNode.filter setValue:@(self.orangeNode.zRotation) forKey:@"inputAngle"];
+
 }
 
 #pragma mark - Health 
 - (void)hurtOrangeNode {
+    
+    if (!self.orangePainEmitterNode.parent) {
+        [self.orangeNode addChild:self.orangePainEmitterNode];
+        self.orangeEffectNode.shouldEnableEffects = YES;
+    }
     self.orangeHealth--;
 }
 
 - (void)hurtBlueNode {
+    if (!self.bluePainEmitterNode.parent) {
+        [self.blueNode addChild:self.bluePainEmitterNode];
+        self.blueEffectNode.shouldEnableEffects = YES;
+    }
     self.blueHealth--;
+}
+
+- (void)removePainEffects {
+    [self.bluePainEmitterNode removeFromParent];
+    self.blueEffectNode.shouldEnableEffects = NO;
+    
+    [self.orangePainEmitterNode removeFromParent];
+    self.orangeEffectNode.shouldEnableEffects = NO;
 }
 
 #pragma mark - Physics
@@ -118,7 +161,6 @@
     BOOL jointDisabled = (self.orangePinJoint == nil);
     self.orangeNode.alpha = jointDisabled ? 1.f : 0.3f;
     self.orangeNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
-    self.orangeEffectNode.shouldEnableEffects = jointDisabled;
 }
 
 - (void)toggleBlueSuction {
@@ -136,7 +178,6 @@
     BOOL jointDisabled = (self.bluePinJoint == nil);
     self.blueNode.alpha = jointDisabled ? 1.f : 0.3f;
     self.blueNode.strokeColor = jointDisabled ? [SKColor clearColor] : [SKColor whiteColor];
-    self.blueEffectNode.shouldEnableEffects = jointDisabled;
 }
 
 - (void)accelerateOrangeNode {

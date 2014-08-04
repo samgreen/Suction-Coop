@@ -32,7 +32,7 @@ static NSString *const kKamcordDeveloperSecret  = @"";
     
     // Create and configure the scene.
     LevelScene *scene = [LevelScene sceneWithSize:CGSizeMake(1024, 768)];
-    scene.level = 2;
+    scene.level = 1;
     
     // Present the scene.
     [skView presentScene:scene];

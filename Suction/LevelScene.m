@@ -62,24 +62,38 @@
     self.interfaceLayerNode = [SKNode node];
     [self addChild:self.interfaceLayerNode];
     
+    SKSpriteNode *orangeBackgroundNode = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor]
+                                                                      size:CGSizeMake(64.f, 600.f)];
+    orangeBackgroundNode.anchorPoint = CGPointMake(0, 0.5f);
+    orangeBackgroundNode.position = CGPointMake(20, 384);
+    orangeBackgroundNode.alpha = 0.5f;
+    [self.interfaceLayerNode addChild:orangeBackgroundNode];
+    
+    SKSpriteNode *blueBackgroundNode = [SKSpriteNode spriteNodeWithColor:[SKColor blackColor]
+                                                                    size:CGSizeMake(64.f, 600.f)];
+    blueBackgroundNode.anchorPoint = CGPointMake(1.f, 0.5f);
+    blueBackgroundNode.position = CGPointMake(CGRectGetWidth(self.frame) - 20, 384);
+    blueBackgroundNode.alpha = 0.5f;
+    [self.interfaceLayerNode addChild:blueBackgroundNode];
+    
     SKLabelNode *orangeSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor orangeColor]];
     orangeSuctionLabelNode.zRotation = -M_PI_2;
-    orangeSuctionLabelNode.position = CGPointMake(20, 192);
+    orangeSuctionLabelNode.position = CGPointMake(40, 192);
     [self.interfaceLayerNode addChild:orangeSuctionLabelNode];
     
     SKLabelNode *orangeForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor orangeColor]];
     orangeForceLabelNode.zRotation = -M_PI_2;
-    orangeForceLabelNode.position = CGPointMake(20, 576);
+    orangeForceLabelNode.position = CGPointMake(40, 576);
     [self.interfaceLayerNode addChild:orangeForceLabelNode];
     
     SKLabelNode *blueSuctionLabelNode = [LevelScene newControlNode:@"Suction" withFontColor:[SKColor blueColor]];
-    blueSuctionLabelNode.position = CGPointMake(1004, 192);
+    blueSuctionLabelNode.position = CGPointMake(984, 192);
     blueSuctionLabelNode.zRotation = M_PI_2;
     [self.interfaceLayerNode addChild:blueSuctionLabelNode];
     
     SKLabelNode *blueForceLabelNode = [LevelScene newControlNode:@"Force" withFontColor:[SKColor blueColor]];
     blueForceLabelNode.zRotation = M_PI_2;
-    blueForceLabelNode.position = CGPointMake(1004, 576);
+    blueForceLabelNode.position = CGPointMake(984, 576);
     [self.interfaceLayerNode addChild:blueForceLabelNode];
     
     self.gameOverLabelNode = [LevelScene newLabelNode:@"" withFontColor:[SKColor whiteColor]];
@@ -333,6 +347,19 @@
         NSLog(@"Touched wall.");
     } else {
         NSLog(@"Began contact (%@, %@)", nodeA.name, nodeB.name);
+    }
+}
+
+- (void)didEndContact:(SKPhysicsContact *)contact {
+    SKNode *nodeA = contact.bodyA.node;
+    SKNode *nodeB = contact.bodyB.node;
+    NSString *nameA = nodeA.name;
+    NSString *nameB = nodeB.name;
+    
+    // Did we hit a pain node?
+    if ([nameA isEqualToString:@"Pain"] || [nameB isEqualToString:@"Pain"]) {
+        // Remove the particle effects after a delay
+        [self.suctionNode performSelector:@selector(removePainEffects) withObject:nil afterDelay:3.5f];
     }
 }
 

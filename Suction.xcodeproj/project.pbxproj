@@ -70,11 +70,12 @@
 		51A9F76B198F32B3003CE440 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A9F76A198F32B3003CE440 /* Accounts.framework */; };
 		51A9F7A9198F3931003CE440 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A9F7A7198F381B003CE440 /* AdSupport.framework */; };
 		51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 51ADC9CA198E37CA00217F68 /* MenuScene.m */; };
-		51ADC9CD198E3EE600217F68 /* Level-4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-4.sks */; };
+		51ADC9CD198E3EE600217F68 /* Level-5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51ADC9CC198E3EE600217F68 /* Level-5.sks */; };
 		51AFF003198F69600098D89C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF002198F69600098D89C /* FireParticle.sks */; };
 		51AFF005198F71C10098D89C /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF004198F71C10098D89C /* wall.png */; };
 		51AFF007198F72470098D89C /* wall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF006198F72470098D89C /* wall@2x.png */; };
 		51AFF00A198F76520098D89C /* spiral.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF009198F76520098D89C /* spiral.fsh */; };
+		51B41DFC198FD8C200E72F35 /* Level-4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51B41DFB198FD8C200E72F35 /* Level-4.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,11 +167,12 @@
 		51A9F7A7198F381B003CE440 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		51ADC9C9198E37CA00217F68 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		51ADC9CA198E37CA00217F68 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
-		51ADC9CC198E3EE600217F68 /* Level-4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-4.sks"; sourceTree = "<group>"; };
+		51ADC9CC198E3EE600217F68 /* Level-5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-5.sks"; sourceTree = "<group>"; };
 		51AFF002198F69600098D89C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
 		51AFF004198F71C10098D89C /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
 		51AFF006198F72470098D89C /* wall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wall@2x.png"; sourceTree = "<group>"; };
 		51AFF009198F76520098D89C /* spiral.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = spiral.fsh; sourceTree = "<group>"; };
+		51B41DFB198FD8C200E72F35 /* Level-4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-4.sks"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,10 +257,11 @@
 		51216F0C198E238F00490A0C /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				51B41DFB198FD8C200E72F35 /* Level-4.sks */,
 				51A9F73E198E67CA003CE440 /* Level-1.sks */,
 				51A9F740198E6865003CE440 /* Level-2.sks */,
 				51216F0A198E231500490A0C /* Level-3.sks */,
-				51ADC9CC198E3EE600217F68 /* Level-4.sks */,
+				51ADC9CC198E3EE600217F68 /* Level-5.sks */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -511,7 +514,8 @@
 				51A4315B198B7084007E67C3 /* Images.xcassets in Resources */,
 				51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */,
 				51216F0B198E231500490A0C /* Level-3.sks in Resources */,
-				51ADC9CD198E3EE600217F68 /* Level-4.sks in Resources */,
+				51ADC9CD198E3EE600217F68 /* Level-5.sks in Resources */,
+				51B41DFC198FD8C200E72F35 /* Level-4.sks in Resources */,
 				51A9F74C198F31C0003CE440 /* KamcordiPhone.storyboardc in Resources */,
 				51A9F74D198F31C0003CE440 /* KC_GTMOAuth2ViewTouch.nib in Resources */,
 				51416AB9198FB22600DC7FE2 /* heart_empty.png in Resources */,

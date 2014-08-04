@@ -28,5 +28,6 @@
 - (void)hurtBlueNode;
 
 - (void)updateEffects;
+- (void)removePainEffects;
 
 @end
