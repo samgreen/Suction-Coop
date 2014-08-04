@@ -64,6 +64,7 @@
 		51AFF003198F69600098D89C /* FireParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF002198F69600098D89C /* FireParticle.sks */; };
 		51AFF005198F71C10098D89C /* wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF004198F71C10098D89C /* wall.png */; };
 		51AFF007198F72470098D89C /* wall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF006198F72470098D89C /* wall@2x.png */; };
+		51AFF00A198F76520098D89C /* spiral.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 51AFF009198F76520098D89C /* spiral.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		51AFF002198F69600098D89C /* FireParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireParticle.sks; sourceTree = "<group>"; };
 		51AFF004198F71C10098D89C /* wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wall.png; sourceTree = "<group>"; };
 		51AFF006198F72470098D89C /* wall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wall@2x.png"; sourceTree = "<group>"; };
+		51AFF009198F76520098D89C /* spiral.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = spiral.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,13 +280,13 @@
 		51A43140198B7084007E67C3 /* Suction */ = {
 			isa = PBXGroup;
 			children = (
-				51A9F732198E6308003CE440 /* Categories */,
-				51216F0D198E2DFC00490A0C /* Scenes */,
-				51216F00198CD22100490A0C /* Nodes */,
 				51A43149198B7084007E67C3 /* AppDelegate.h */,
 				51A4314A198B7084007E67C3 /* AppDelegate.m */,
 				51A43152198B7084007E67C3 /* ViewController.h */,
 				51A43153198B7084007E67C3 /* ViewController.m */,
+				51A9F732198E6308003CE440 /* Categories */,
+				51216F0D198E2DFC00490A0C /* Scenes */,
+				51216F00198CD22100490A0C /* Nodes */,
 				51A43141198B7084007E67C3 /* Supporting Files */,
 			);
 			path = Suction;
@@ -293,6 +295,7 @@
 		51A43141198B7084007E67C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				51AFF008198F762A0098D89C /* Shaders */,
 				51AFF006198F72470098D89C /* wall@2x.png */,
 				51AFF004198F71C10098D89C /* wall.png */,
 				51590F4D198F4FA400D17825 /* Main_iPad.storyboard */,
@@ -367,6 +370,14 @@
 				51A9F748198F31C0003CE440 /* KC_GTMOAuth2ViewTouch.nib */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		51AFF008198F762A0098D89C /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				51AFF009198F76520098D89C /* spiral.fsh */,
+			);
+			name = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +476,7 @@
 				51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */,
 				51A9F73F198E67CA003CE440 /* Level-3.sks in Resources */,
 				51A43145198B7084007E67C3 /* InfoPlist.strings in Resources */,
+				51AFF00A198F76520098D89C /* spiral.fsh in Resources */,
 				51A9F741198E6865003CE440 /* Level-4.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
