@@ -1,5 +1,6 @@
 # TODO
  * Add Lighting
+ * Add level indicator
  * Unbounded levels
    * Remove edge loops
 

@@ -11,6 +11,7 @@
 		51216F06198CD26100490A0C /* PainNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51216F05198CD26100490A0C /* PainNode.m */; };
 		51216F09198E1D6E00490A0C /* WallNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 51216F08198E1D6E00490A0C /* WallNode.m */; };
 		51216F0B198E231500490A0C /* Level-3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 51216F0A198E231500490A0C /* Level-3.sks */; };
+		5125CBCB198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 5125CBCA198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m */; };
 		51590F4F198F4FA400D17825 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4D198F4FA400D17825 /* Main_iPad.storyboard */; };
 		51590F50198F4FA400D17825 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */; };
 		51A43139198B7084007E67C3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51A43138198B7084007E67C3 /* Foundation.framework */; };
@@ -85,6 +86,8 @@
 		51216F07198E1D6E00490A0C /* WallNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallNode.h; sourceTree = "<group>"; };
 		51216F08198E1D6E00490A0C /* WallNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallNode.m; sourceTree = "<group>"; };
 		51216F0A198E231500490A0C /* Level-3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "Level-3.sks"; sourceTree = "<group>"; };
+		5125CBC9198F84B40032A81E /* SKEffectNode+CoreImageHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKEffectNode+CoreImageHelpers.h"; sourceTree = "<group>"; };
+		5125CBCA198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKEffectNode+CoreImageHelpers.m"; sourceTree = "<group>"; };
 		51590F4D198F4FA400D17825 /* Main_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPad.storyboard; sourceTree = "<group>"; };
 		51590F4E198F4FA400D17825 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 		51A43135198B7084007E67C3 /* Suction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Suction.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -356,6 +359,8 @@
 			children = (
 				51A9F733198E6339003CE440 /* SKNode+ArchiveHelpers.h */,
 				51A9F734198E6339003CE440 /* SKNode+ArchiveHelpers.m */,
+				5125CBC9198F84B40032A81E /* SKEffectNode+CoreImageHelpers.h */,
+				5125CBCA198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -510,6 +515,7 @@
 				51A43179198B7389007E67C3 /* SuctionNode.m in Sources */,
 				51216F09198E1D6E00490A0C /* WallNode.m in Sources */,
 				51216F06198CD26100490A0C /* PainNode.m in Sources */,
+				5125CBCB198F84B40032A81E /* SKEffectNode+CoreImageHelpers.m in Sources */,
 				51A43154198B7084007E67C3 /* GameViewController.m in Sources */,
 				51ADC9CB198E37CA00217F68 /* MenuScene.m in Sources */,
 				51A4314B198B7084007E67C3 /* AppDelegate.m in Sources */,

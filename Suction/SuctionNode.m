@@ -7,6 +7,7 @@
 //
 
 #import "SuctionNode.h"
+#import "SKEffectNode+CoreImageHelpers.h"
 
 @interface SuctionNode ()
 
@@ -31,16 +32,20 @@
     self = [super init];
     if (self) {
         self.blueHealth = 3;
+        self.orangeHealth = 3;
+        
+        SKEffectNode *effectNode = [SKEffectNode nodeWithFilterNamed:@"CIGaussianBlur" andInputRadius:8];
+        [self addChild:effectNode];
+        
         self.blueNode = [SuctionNode newSuctionNode:[SKColor blueColor] atPosition:CGPointMake(64.f, 0)];
         self.blueNode.physicsBody.categoryBitMask = SuctionColliderTypeBlueSuction;
         self.blueNode.name = @"BlueSuction";
-        [self addChild:self.blueNode];
+        [effectNode addChild:self.blueNode];
         
-        self.orangeHealth = 3;
         self.orangeNode = [SuctionNode newSuctionNode:[SKColor orangeColor] atPosition:CGPointMake(-64.f, 0)];
         self.orangeNode.physicsBody.categoryBitMask = SuctionColliderTypeOrangeSuction;
         self.orangeNode.name = @"OrangeSuction";
-        [self addChild:self.orangeNode];
+        [effectNode addChild:self.orangeNode];
     }
     return self;
 }

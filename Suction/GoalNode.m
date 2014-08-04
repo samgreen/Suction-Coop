@@ -8,6 +8,7 @@
 
 #import "GoalNode.h"
 #import "SKNode+ArchiveHelpers.h"
+#import "SKEffectNode+CoreImageHelpers.h"
 
 @interface GoalNode ()
 
@@ -26,8 +27,11 @@
         self.physicsBody.collisionBitMask = SuctionColliderTypeNone;
         self.physicsBody.contactTestBitMask = SuctionColliderTypeOrangeSuction | SuctionColliderTypeBlueSuction;
         
+        SKEffectNode *effectNode = [SKEffectNode nodeWithFilterNamed:@"CIBloom" andInputRadius:50];
+        [self addChild:effectNode];
+        
         SKEmitterNode *emitter = [SKEmitterNode loadArchive:@"MagicParticle"];
-        [self addChild:emitter];
+        [effectNode addChild:emitter];
     }
     return self;
 }
